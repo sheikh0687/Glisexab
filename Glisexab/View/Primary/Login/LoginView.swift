@@ -35,7 +35,7 @@ struct LoginView: View {
                                 .fill(Color.gray.opacity(0.15))
                                 .frame(height: 45)
                                 .cornerRadius(10)
-                                .overlay(
+                                .overlay (
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
                                 )

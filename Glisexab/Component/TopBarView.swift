@@ -19,7 +19,7 @@ struct TopBarView: View {
         ZStack {
             Color.colorNeavyBlue
                 .clipShape(RoundedRectangle(cornerRadius: 0, style: .continuous))
-                .frame(height: .screenHeight * 0.150)
+                .frame(height: .screenHeight * 0.1)
             
             HStack {
                 // Back Button
@@ -28,7 +28,7 @@ struct TopBarView: View {
                         Image(systemName: "arrow.left")
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .bold))
-                            .padding(.top, 30)
+//                            .padding(.top, 30)
                     }
                 }
                 
@@ -39,8 +39,8 @@ struct TopBarView: View {
                     Image(logoName)
                         .resizable()
                         .scaledToFit()
-                        .frame(height: .screenHeight * 0.1)
-                        .padding(.top, 30)
+                        .frame(height: .screenHeight * 0.060)
+//                        .padding(.top, 30)
                 }
                 
 //                Spacer()
@@ -73,15 +73,17 @@ struct TopBarView: View {
                 }
             }
             .padding(.horizontal, 16)
+            .frame(height: .screenHeight * 0.1)
+            
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .top)
     }
 }
 
 #Preview {
     VStack {
-        TopBarView(showBack: true)   // With back
+        TopBarView(showBack: true, rightButtonImage: "gearshape", rightButtonAction: { print("Right tapped") })
         Spacer()
-        TopBarView(showBack: false)  // Without back
+        TopBarView(showBack: false)
     }
 }

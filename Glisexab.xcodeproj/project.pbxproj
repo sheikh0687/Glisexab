@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */; };
 		CF1B11632E8CF7280044E1B2 /* UiExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B11622E8CF7280044E1B2 /* UiExtension.swift */; };
+		CF237D3D2E93A791002A9013 /* SearchCompleterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF237D3C2E93A791002A9013 /* SearchCompleterViewModel.swift */; };
+		CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66AE842E93C04900C83DD1 /* BookingView.swift */; };
 		CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */; };
 		CFA635892E8CF535006A62E7 /* Inter-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357B2E8CF535006A62E7 /* Inter-ExtraBold.otf */; };
 		CFA6358A2E8CF535006A62E7 /* Inter-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357A2E8CF535006A62E7 /* Inter-BoldItalic.otf */; };
@@ -39,8 +42,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBookingView.swift; sourceTree = "<group>"; };
 		CF1B11622E8CF7280044E1B2 /* UiExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiExtension.swift; sourceTree = "<group>"; };
+		CF237D3C2E93A791002A9013 /* SearchCompleterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompleterViewModel.swift; sourceTree = "<group>"; };
 		CF3A96582E8C04CB0020E723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF66AE842E93C04900C83DD1 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CFA635772E8CF535006A62E7 /* Inter-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.otf"; sourceTree = "<group>"; };
 		CFA635782E8CF535006A62E7 /* Inter-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -83,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0C28482E93EE95007F9C3B /* BookingDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CF66AE842E93C04900C83DD1 /* BookingView.swift */,
+			);
+			path = BookingDetail;
+			sourceTree = "<group>";
+		};
 		CF1B11612E8CF6CB0044E1B2 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +130,31 @@
 				CFC40B332E913C1600DAC1D3 /* LocationManager.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		CF237D392E93A3AE002A9013 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CF237D3B2E93A753002A9013 /* Model */,
+				CF237D3A2E93A3B6002A9013 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CF237D3A2E93A3B6002A9013 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFB8D3792E91586B00129E59 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF237D3B2E93A753002A9013 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF237D3C2E93A791002A9013 /* SearchCompleterViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CF9B61602E8D105900D0C230 /* View */ = {
@@ -165,7 +204,9 @@
 		CFC40B302E912CAB00DAC1D3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CFB8D3792E91586B00129E59 /* HomeView.swift */,
+				CF237D392E93A3AE002A9013 /* Home */,
+				CF0C28482E93EE95007F9C3B /* BookingDetail */,
+				CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -322,11 +363,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */,
 				CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */,
 				CFC40B342E913C1600DAC1D3 /* LocationManager.swift in Sources */,
 				CFFC86452E90F2380050CEBB /* SignupView.swift in Sources */,
 				CFB8D37A2E91586B00129E59 /* HomeView.swift in Sources */,
+				CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */,
 				CFD0C9332E8BE7EA00E7FC9B /* GlisexabApp.swift in Sources */,
+				CF237D3D2E93A791002A9013 /* SearchCompleterViewModel.swift in Sources */,
 				CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */,
 				CFD0C93A2E8BE93B00E7FC9B /* WelcomeView.swift in Sources */,
 				CFD0CD242E8D44FB001A7FFD /* LoginView.swift in Sources */,
