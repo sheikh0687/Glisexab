@@ -10,6 +10,8 @@
 		CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */; };
 		CF1B11632E8CF7280044E1B2 /* UiExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B11622E8CF7280044E1B2 /* UiExtension.swift */; };
 		CF237D3D2E93A791002A9013 /* SearchCompleterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF237D3C2E93A791002A9013 /* SearchCompleterViewModel.swift */; };
+		CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5389232E9668EB000F9B64 /* DriverDetailView.swift */; };
+		CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */; };
 		CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66AE842E93C04900C83DD1 /* BookingView.swift */; };
 		CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */; };
 		CFA635892E8CF535006A62E7 /* Inter-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357B2E8CF535006A62E7 /* Inter-ExtraBold.otf */; };
@@ -33,11 +35,15 @@
 		CFB8D37A2E91586B00129E59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8D3792E91586B00129E59 /* HomeView.swift */; };
 		CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC40B2C2E91205400DAC1D3 /* ForgetPasswordView.swift */; };
 		CFC40B342E913C1600DAC1D3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC40B332E913C1600DAC1D3 /* LocationManager.swift */; };
+		CFC9C5F52E97D04D003F5BB9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC9C5F42E97D04D003F5BB9 /* SettingView.swift */; };
 		CFD0C9312E8BE7EA00E7FC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD0C92D2E8BE7EA00E7FC9B /* Assets.xcassets */; };
 		CFD0C9332E8BE7EA00E7FC9B /* GlisexabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD0C92F2E8BE7EA00E7FC9B /* GlisexabApp.swift */; };
 		CFD0C93A2E8BE93B00E7FC9B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD0C9382E8BE93B00E7FC9B /* WelcomeView.swift */; };
 		CFD0CD242E8D44FB001A7FFD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD0CD232E8D44FB001A7FFD /* LoginView.swift */; };
 		CFD0CD262E8D4902001A7FFD /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD0CD252E8D4902001A7FFD /* TopBarView.swift */; };
+		CFD1F0012E94DE0900C792A7 /* PopupBargainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD1F0002E94DE0900C792A7 /* PopupBargainView.swift */; };
+		CFD1F0042E94F41B00C792A7 /* SearchDriverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD1F0032E94F41B00C792A7 /* SearchDriverView.swift */; };
+		CFD1F0082E94FDB800C792A7 /* TrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD1F0072E94FDB800C792A7 /* TrackingView.swift */; };
 		CFFC86452E90F2380050CEBB /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFC86442E90F2380050CEBB /* SignupView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +52,8 @@
 		CF1B11622E8CF7280044E1B2 /* UiExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiExtension.swift; sourceTree = "<group>"; };
 		CF237D3C2E93A791002A9013 /* SearchCompleterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompleterViewModel.swift; sourceTree = "<group>"; };
 		CF3A96582E8C04CB0020E723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF5389232E9668EB000F9B64 /* DriverDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailView.swift; sourceTree = "<group>"; };
+		CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
 		CF66AE842E93C04900C83DD1 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CFA635772E8CF535006A62E7 /* Inter-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.otf"; sourceTree = "<group>"; };
@@ -69,12 +77,16 @@
 		CFB8D3792E91586B00129E59 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFC40B2C2E91205400DAC1D3 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		CFC40B332E913C1600DAC1D3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CFC9C5F42E97D04D003F5BB9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		CFD0C91F2E8BE22300E7FC9B /* Glisexab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glisexab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD0C92D2E8BE7EA00E7FC9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFD0C92F2E8BE7EA00E7FC9B /* GlisexabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlisexabApp.swift; sourceTree = "<group>"; };
 		CFD0C9382E8BE93B00E7FC9B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		CFD0CD232E8D44FB001A7FFD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CFD0CD252E8D4902001A7FFD /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		CFD1F0002E94DE0900C792A7 /* PopupBargainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupBargainView.swift; sourceTree = "<group>"; };
+		CFD1F0032E94F41B00C792A7 /* SearchDriverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDriverView.swift; sourceTree = "<group>"; };
+		CFD1F0072E94FDB800C792A7 /* TrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingView.swift; sourceTree = "<group>"; };
 		CFFC86442E90F2380050CEBB /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,12 +101,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF0C28482E93EE95007F9C3B /* BookingDetail */ = {
+		CF0C28482E93EE95007F9C3B /* Booking Detail */ = {
 			isa = PBXGroup;
 			children = (
 				CF66AE842E93C04900C83DD1 /* BookingView.swift */,
 			);
-			path = BookingDetail;
+			path = "Booking Detail";
 			sourceTree = "<group>";
 		};
 		CF1B11612E8CF6CB0044E1B2 /* Font */ = {
@@ -157,6 +169,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CF5389222E966773000F9B64 /* Ride Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */,
+			);
+			path = "Ride Detail";
+			sourceTree = "<group>";
+		};
+		CF5389252E9668F7000F9B64 /* Driver Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CF5389232E9668EB000F9B64 /* DriverDetailView.swift */,
+			);
+			path = "Driver Detail";
+			sourceTree = "<group>";
+		};
 		CF9B61602E8D105900D0C230 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,11 +232,33 @@
 		CFC40B302E912CAB00DAC1D3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CF237D392E93A3AE002A9013 /* Home */,
-				CF0C28482E93EE95007F9C3B /* BookingDetail */,
-				CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */,
+				CFC9C5F22E97CFF3003F5BB9 /* Home */,
+				CFC9C5F32E97D007003F5BB9 /* Settings */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		CFC9C5F22E97CFF3003F5BB9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CF237D392E93A3AE002A9013 /* Home */,
+				CF0C28482E93EE95007F9C3B /* Booking Detail */,
+				CFD1EFFF2E94DDCE00C792A7 /* Schedule Booking */,
+				CFD1F0022E94F16E00C792A7 /* PopUp */,
+				CFD1F0062E94FC4000C792A7 /* Search Driver */,
+				CFD1F0092E94FDBD00C792A7 /* Tracking */,
+				CF5389222E966773000F9B64 /* Ride Detail */,
+				CF5389252E9668F7000F9B64 /* Driver Detail */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CFC9C5F32E97D007003F5BB9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CFC9C5F42E97D04D003F5BB9 /* SettingView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CFD0C9162E8BE22300E7FC9B = {
@@ -263,6 +313,38 @@
 				CFD0C9382E8BE93B00E7FC9B /* WelcomeView.swift */,
 			);
 			path = Welcome;
+			sourceTree = "<group>";
+		};
+		CFD1EFFF2E94DDCE00C792A7 /* Schedule Booking */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */,
+			);
+			path = "Schedule Booking";
+			sourceTree = "<group>";
+		};
+		CFD1F0022E94F16E00C792A7 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				CFD1F0002E94DE0900C792A7 /* PopupBargainView.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		CFD1F0062E94FC4000C792A7 /* Search Driver */ = {
+			isa = PBXGroup;
+			children = (
+				CFD1F0032E94F41B00C792A7 /* SearchDriverView.swift */,
+			);
+			path = "Search Driver";
+			sourceTree = "<group>";
+		};
+		CFD1F0092E94FDBD00C792A7 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				CFD1F0072E94FDB800C792A7 /* TrackingView.swift */,
+			);
+			path = Tracking;
 			sourceTree = "<group>";
 		};
 		CFFC86432E90F2250050CEBB /* Login */ = {
@@ -364,17 +446,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */,
+				CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */,
+				CFD1F0042E94F41B00C792A7 /* SearchDriverView.swift in Sources */,
 				CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */,
 				CFC40B342E913C1600DAC1D3 /* LocationManager.swift in Sources */,
 				CFFC86452E90F2380050CEBB /* SignupView.swift in Sources */,
 				CFB8D37A2E91586B00129E59 /* HomeView.swift in Sources */,
 				CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */,
 				CFD0C9332E8BE7EA00E7FC9B /* GlisexabApp.swift in Sources */,
+				CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */,
+				CFC9C5F52E97D04D003F5BB9 /* SettingView.swift in Sources */,
 				CF237D3D2E93A791002A9013 /* SearchCompleterViewModel.swift in Sources */,
 				CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */,
 				CFD0C93A2E8BE93B00E7FC9B /* WelcomeView.swift in Sources */,
+				CFD1F0082E94FDB800C792A7 /* TrackingView.swift in Sources */,
 				CFD0CD242E8D44FB001A7FFD /* LoginView.swift in Sources */,
 				CFD0CD262E8D4902001A7FFD /* TopBarView.swift in Sources */,
+				CFD1F0012E94DE0900C792A7 /* PopupBargainView.swift in Sources */,
 				CF1B11632E8CF7280044E1B2 /* UiExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
