@@ -13,8 +13,8 @@ struct WelcomeView: View {
         if #available(iOS 16.0, *) {
             NavigationStack {
                 ZStack {
-//                    Color(.colorLightBlue)
-//                        .ignoresSafeArea(.all, edges: .all)
+                    Color(.colorLightBlue)
+                        .ignoresSafeArea(.all, edges: .all)
                     
                     ScrollView {
                         VStack(alignment: .center) {
@@ -61,9 +61,6 @@ struct WelcomeView: View {
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden()
             .ignoresSafeArea()
-
-        } else {
-            // Fallback on earlier versions
         }
     }
 }

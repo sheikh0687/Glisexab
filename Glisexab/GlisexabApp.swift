@@ -11,7 +11,7 @@ import SwiftUI
 struct GlisexabApp: App {
     var body: some Scene {
         WindowGroup {
-            DriverDetailView()
+            LoginView()
         }
     }
 }

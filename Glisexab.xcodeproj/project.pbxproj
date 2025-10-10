@@ -12,8 +12,13 @@
 		CF237D3D2E93A791002A9013 /* SearchCompleterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF237D3C2E93A791002A9013 /* SearchCompleterViewModel.swift */; };
 		CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5389232E9668EB000F9B64 /* DriverDetailView.swift */; };
 		CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */; };
+		CF61AFAC2E99314C0064965A /* CustomLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61AFAB2E99314C0064965A /* CustomLogo.swift */; };
 		CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66AE842E93C04900C83DD1 /* BookingView.swift */; };
 		CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */; };
+		CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89E5042E99056E0026C76C /* SaveAddressView.swift */; };
+		CF8E51752E98DEA20018469A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51742E98DEA20018469A /* BackButton.swift */; };
+		CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51772E98E0250018469A /* EditProfileView.swift */; };
+		CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51792E98E89B0018469A /* AddAddressView.swift */; };
 		CFA635892E8CF535006A62E7 /* Inter-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357B2E8CF535006A62E7 /* Inter-ExtraBold.otf */; };
 		CFA6358A2E8CF535006A62E7 /* Inter-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357A2E8CF535006A62E7 /* Inter-BoldItalic.otf */; };
 		CFA6358B2E8CF535006A62E7 /* Inter-ExtraLightItalic-BETA.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357E2E8CF535006A62E7 /* Inter-ExtraLightItalic-BETA.otf */; };
@@ -54,8 +59,13 @@
 		CF3A96582E8C04CB0020E723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF5389232E9668EB000F9B64 /* DriverDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailView.swift; sourceTree = "<group>"; };
 		CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
+		CF61AFAB2E99314C0064965A /* CustomLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogo.swift; sourceTree = "<group>"; };
 		CF66AE842E93C04900C83DD1 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CF89E5042E99056E0026C76C /* SaveAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressView.swift; sourceTree = "<group>"; };
+		CF8E51742E98DEA20018469A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		CF8E51772E98E0250018469A /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		CF8E51792E98E89B0018469A /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
 		CFA635772E8CF535006A62E7 /* Inter-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.otf"; sourceTree = "<group>"; };
 		CFA635782E8CF535006A62E7 /* Inter-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-BlackItalic.otf"; sourceTree = "<group>"; };
 		CFA635792E8CF535006A62E7 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.otf"; sourceTree = "<group>"; };
@@ -140,6 +150,8 @@
 				CF1B11622E8CF7280044E1B2 /* UiExtension.swift */,
 				CFD0CD252E8D4902001A7FFD /* TopBarView.swift */,
 				CFC40B332E913C1600DAC1D3 /* LocationManager.swift */,
+				CF8E51742E98DEA20018469A /* BackButton.swift */,
+				CF61AFAB2E99314C0064965A /* CustomLogo.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -183,6 +195,30 @@
 				CF5389232E9668EB000F9B64 /* DriverDetailView.swift */,
 			);
 			path = "Driver Detail";
+			sourceTree = "<group>";
+		};
+		CF89E5062E9905710026C76C /* Save Address */ = {
+			isa = PBXGroup;
+			children = (
+				CF89E5042E99056E0026C76C /* SaveAddressView.swift */,
+			);
+			path = "Save Address";
+			sourceTree = "<group>";
+		};
+		CF8E51762E98E0050018469A /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CF8E51772E98E0250018469A /* EditProfileView.swift */,
+			);
+			path = "Edit Profile";
+			sourceTree = "<group>";
+		};
+		CF8E517B2E98E8B00018469A /* Add Address */ = {
+			isa = PBXGroup;
+			children = (
+				CF8E51792E98E89B0018469A /* AddAddressView.swift */,
+			);
+			path = "Add Address";
 			sourceTree = "<group>";
 		};
 		CF9B61602E8D105900D0C230 /* View */ = {
@@ -257,6 +293,9 @@
 			isa = PBXGroup;
 			children = (
 				CFC9C5F42E97D04D003F5BB9 /* SettingView.swift */,
+				CF8E51762E98E0050018469A /* Edit Profile */,
+				CF8E517B2E98E8B00018469A /* Add Address */,
+				CF89E5062E9905710026C76C /* Save Address */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -445,14 +484,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */,
 				CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */,
 				CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */,
+				CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */,
 				CFD1F0042E94F41B00C792A7 /* SearchDriverView.swift in Sources */,
 				CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */,
+				CF8E51752E98DEA20018469A /* BackButton.swift in Sources */,
+				CF61AFAC2E99314C0064965A /* CustomLogo.swift in Sources */,
 				CFC40B342E913C1600DAC1D3 /* LocationManager.swift in Sources */,
 				CFFC86452E90F2380050CEBB /* SignupView.swift in Sources */,
 				CFB8D37A2E91586B00129E59 /* HomeView.swift in Sources */,
 				CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */,
+				CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */,
 				CFD0C9332E8BE7EA00E7FC9B /* GlisexabApp.swift in Sources */,
 				CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */,
 				CFC9C5F52E97D04D003F5BB9 /* SettingView.swift in Sources */,
