@@ -14,60 +14,58 @@ struct EditProfileView: View {
     @State private var contact: String = "23874823****"
     @State private var location: String = "Royal Ln. Mesa, New Jersey"
 
+    @EnvironmentObject private var router: NavigationRouter
+    
     var body: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                ZStack {
-                    VStack {
-                        ScrollView {
-                            VStack(spacing: 40) {
-                                Image("leslie")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 120, height: 120)
-                                    .clipShape(.circle)
-                                
-                                VStack(spacing: 20) {
-                                    optionRow(heading: "Name", text: $name)
-                                    optionRow(heading: "Email", text: $email)
-                                    optionRow(heading: "Contact Number", text: $contact)
-                                    optionRow(heading: "Location", text: $location)
-                                }
-                                
-                                Button("Edit Profile") {
-                                    // Edit action
-                                }
-                                .font(.customfont(.bold, fontSize: 16))
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.colorNeavyBlue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                                
-                            }
-                            .padding(.horizontal, 20)
-                            .background(Color.white)
-                        } // Scrool View
-                    } // VSTACK
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.white)
-                    .padding(.top, 40)
-                    .ignoresSafeArea(edges: .bottom)
-                } // ZSTACK
-                .navigationBarBackButtonHidden(true)
-                .navigationTitle("Edit Profile")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        BackButton {
-                            print("Navigation back")
+        ZStack {
+            VStack {
+                ScrollView {
+                    VStack(spacing: 40) {
+                        Image("leslie")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 120)
+                            .clipShape(.circle)
+                        
+                        VStack(spacing: 20) {
+                            optionRow(heading: "Name", text: $name)
+                            optionRow(heading: "Email", text: $email)
+                            optionRow(heading: "Contact Number", text: $contact)
+                            optionRow(heading: "Location", text: $location)
                         }
+                        
+                        Button("Edit Profile") {
+                            // Edit action
+                        }
+                        .font(.customfont(.bold, fontSize: 16))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.colorNeavyBlue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        
                     }
+                    .padding(.horizontal, 20)
+                    .background(Color.white)
+                } // Scrool View
+            } // VSTACK
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.white)
+            .padding(.top, 40)
+            .ignoresSafeArea(edges: .bottom)
+        } // ZSTACK
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Edit Profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton {
+                    router.popView()
                 }
-                .onAppear {
-                    UINavigationBar.setTitleColor(.white)
-                }
-            } // Navigation Stack
+            }
+        }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
         }
     }
     

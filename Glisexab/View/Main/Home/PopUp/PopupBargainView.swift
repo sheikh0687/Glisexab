@@ -12,8 +12,9 @@ struct PopupBargainView: View {
     @Binding var isShowing: Bool
     @State private var txtBidPrice: String = ""
     
-    var strPrice: String = "$150"
+    @EnvironmentObject private var router: NavigationRouter
     
+    var strPrice: String = "$150"
     var isComingFrom: String
     
     var body: some View {
@@ -55,7 +56,9 @@ struct PopupBargainView: View {
                 }
 
                 // Button
-                Button(action: { print("Schedule Booking") }) {
+                Button(action: {
+                    router.push(to: .trackDriver)
+                }) {
                     Text("Send")
                         .font(.customfont(.bold, fontSize: 14))
                         .foregroundColor(.white)
@@ -64,7 +67,9 @@ struct PopupBargainView: View {
                         .cornerRadius(12)
                 }
                 
-                Button(action: { print("Schedule Booking") }) {
+                Button(action: {
+                    router.push(to: .trackDriver)
+                }) {
                     Text("Skip")
                         .font(.customfont(.bold, fontSize: 14))
                         .foregroundColor(.black)

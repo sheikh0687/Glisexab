@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomLogo: View {
     var body: some View {
-        Image("SplashLogo")
+        Image("logo")
             .resizable()
             .scaledToFill()
     }

@@ -21,6 +21,8 @@ struct DriverDetailView: View {
         RiderReview(avatar: "leslie", name: "Leslie Alexander", comment: "Thankyou !! I am reached on time.", rating: 4.8),
         RiderReview(avatar: "jenny", name: "Jenny Wilson", comment: "Thankyou !! for Safe drive.", rating: 4.9)
     ]
+    
+    @EnvironmentObject private var router: NavigationRouter
 
     var body: some View {
         ZStack {
@@ -37,18 +39,7 @@ struct DriverDetailView: View {
                     Rectangle()
                         .fill(Color.colorNeavyBlue)
                         .frame(height: 180)
-                        .ignoresSafeArea(.container, edges: .top)
-                    HStack {
-                        Image(systemName: "arrow.backward")
-                            .padding(.leading, 16)
-                            .foregroundColor(.white)
-                        Text("Driver Details")
-                            .font(.customfont(.semiBold, fontSize: 16))
-                            .foregroundColor(.white)
-                            .padding(.leading, 8)
-                        Spacer()
-                    }
-                    .padding(.top, 16)
+//                        .ignoresSafeArea(.container, edges: .top)
                 }
                 .frame(height: 350)
                 
@@ -103,6 +94,7 @@ struct DriverDetailView: View {
                                     Text("Rating")
                                         .font(.customfont(.semiBold, fontSize: 14))
                                 }
+                                
                                 VStack(spacing: 8) {
                                     VStack(spacing: 8) {
                                         Image(systemName: "briefcase.fill")
@@ -201,6 +193,18 @@ struct DriverDetailView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton {
+                    router.popView()
+                }
+            }
+        }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
         }
     }
 }

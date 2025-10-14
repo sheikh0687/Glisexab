@@ -12,19 +12,14 @@ struct RideDetailView: View {
     
     // MARK: PROPERTIES
     @StateObject private var locationManager = LocationManager()
+    @EnvironmentObject private var router: NavigationRouter
     
     var body: some View {
         ZStack(alignment: .top) {
             // MARK: MAP VIEW
             Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
                 .edgesIgnoringSafeArea(.all)
-            
-            // MARK: TOP BAR
-            VStack(spacing: 0) {
-                TopBarView(showBack: false)
-                Spacer()
-            }
-            
+                        
             // MARK: BOTTOM VIEW
             VStack {
                 Spacer()
@@ -205,6 +200,18 @@ struct RideDetailView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }// ZSTACK
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton {
+                    router.popView()
+                }
+            }
+        }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
+        }
     }
 }
 

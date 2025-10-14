@@ -22,108 +22,108 @@ struct OnboardingView: View {
     ]
     
     @State private var currentPage = 0
-    @State private var navigateNext = false
+    
+    @EnvironmentObject var router: NavigationRouter
     
     var body: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                ZStack {
-                    // Background color
-                    Color.colorNeavyBlue
-                        .ignoresSafeArea()
-                    
-                    // TabView with white rounded background on each page
-                    TabView(selection: $currentPage) {
-                        ForEach(onboardingData.indices, id: \.self) { index in
-                            VStack(alignment: .leading) {
-                                Image(onboardingData[index].imageName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: .screenWidth * 0.85)
-                                    .padding(.top, 20)
-                                
-                                Text(onboardingData[index].title)
-                                    .font(.customfont(.bold, fontSize: 18))
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.top, 40)
-                                
-                                Text(onboardingData[index].description)
-                                    .font(.customfont(.medium, fontSize: 16))
-                                    .foregroundColor(.gray)
-                                    .padding(.top, 8)
-                                
-                                Spacer()
-                            }
-                            .padding(20)
-                            .background(Color.white)
-                            .cornerRadius(20)
-                            .padding(.horizontal)
-                            .tag(index)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
+        ZStack {
+            // Background color
+            Color.colorNeavyBlue
+                .ignoresSafeArea()
+            
+            // TabView with white rounded background on each page
+            TabView(selection: $currentPage) {
+                ForEach(onboardingData.indices, id: \.self) { index in
+                    VStack(alignment: .leading) {
+                        Image(onboardingData[index].imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: .screenWidth * 0.85)
+                            .padding(.top, 20)
+                        
+                        Text(onboardingData[index].title)
+                            .font(.customfont(.bold, fontSize: 18))
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.leading)
+                            .padding(.top, 40)
+                        
+                        Text(onboardingData[index].description)
+                            .font(.customfont(.medium, fontSize: 16))
+                            .foregroundColor(.gray)
+                            .padding(.top, 8)
+                        
+                        Spacer()
+                    }
+                    .padding(20)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .padding(.horizontal)
+                    .tag(index)
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .animation(.easeInOut, value: currentPage)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            VStack {
+                Spacer()
+                HStack {
+                    // Page Indicator
+                    HStack(spacing: 8) {
+                        ForEach(0..<onboardingData.count, id: \.self) { index in
+                            Circle()
+                                .fill(index == currentPage ? Color.colorNeavyBlue : Color.gray)
+                                .frame(width: 8, height: 8)
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .animation(.easeOut, value: currentPage)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 24)
                     
-                    VStack {
-                        Spacer()
-                        HStack {
-                            // Page Indicator
-                            HStack(spacing: 8) {
-                                ForEach(0..<onboardingData.count, id: \.self) { index in
-                                    Circle()
-                                        .fill(index == currentPage ? Color.colorNeavyBlue : Color.gray)
-                                        .frame(width: 8, height: 8)
-                                }
-                            }
-                            .padding(.horizontal, 30)
-                            .padding(.bottom, 24)
-                            
-                            Spacer()
-                            
-                            // Next Button Overlay
-                            ZStack {
-                                // Blue arc cut effect
-                                Circle()
-                                    .fill(Color.colorNeavyBlue)
-                                    .frame(width: 120, height: 120) // slightly bigger for effect
-                                    .offset(x: 40) // pushes half outside
-                                    .overlay {
-                                        Button {
-                                            withAnimation {
-                                                if currentPage < onboardingData.count - 1 {
-                                                    currentPage += 1
-                                                } else {
-                                                    navigateNext = true
-                                                }
-                                            }
-                                        } label: {
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.white)
-                                                .font(.system(size: 22, weight: .bold))
-                                                .frame(width: 100, height: 100)
+                    Spacer()
+                    
+                    // Next Button Overlay
+                    ZStack {
+                        // Blue arc cut effect
+                        Circle()
+                            .fill(Color.colorNeavyBlue)
+                            .frame(width: 120, height: 120) // slightly bigger for effect
+                            .offset(x: 30) // pushes half outside
+                            .overlay {
+                                Button {
+                                    withAnimation {
+                                        if currentPage < onboardingData.count - 1 {
+                                            currentPage += 1
+                                        } else {
+                                            router.push(to: .login)
                                         }
                                     }
+                                } label: {
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 22, weight: .bold))
+                                        .frame(width: 100, height: 100)
+                                }
                             }
-                            .padding(.trailing, -20) // aligns with edge
-                            .padding(.bottom, 24)
-                        }
                     }
-                    
-                    NavigationLink(destination: LoginView(), isActive: $navigateNext) {
-                        EmptyView()
-                    }
+                    .padding(.trailing, -20) // aligns with edge
+                    .padding(.bottom, 60)
                 }
-            }// NAVIGATION STACK
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden()
-            .ignoresSafeArea()
-
-        } else {
-            // Fallback on earlier versions
+            }
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden()
+        .ignoresSafeArea()
+
+        
+//        if #available(iOS 16.0, *) {
+//            NavigationStack {
+//
+//            }// NAVIGATION STACK
+//
+//        } else {
+//            // Fallback on earlier versions
+//        }
     }
 }
 

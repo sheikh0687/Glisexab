@@ -22,18 +22,25 @@ struct SignupView: View {
     @State private var isPaswordVisible = false
     @State private var isConfirmPasswordVisible = false
     
+    @Environment(\.dismiss) private var dissmiss
+    @EnvironmentObject private var router: NavigationRouter
+    
     var body: some View {
         
-        if #available(iOS 16.4, *) {
+//        if #available(iOS 16.4, *) {
+//        } else {
+//            // Fallback on earlier versions
+//        }
+        
+        ZStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    TopBarView(showBack: true)
                     
                     Text("Continue to Signup")
                         .font(.customfont(.medium, fontSize: 18))
                         .padding(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 20)
+                        .padding(.top, 40)
                         .padding(.bottom, 20)
                     
                     VStack(alignment: .leading, spacing: 16) {
@@ -159,7 +166,7 @@ struct SignupView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
                                 )
-
+                            
                             HStack {
                                 Image("Location")
                                     .resizable()
@@ -192,14 +199,14 @@ struct SignupView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
                                 )
-
+                            
                             HStack {
                                 Image("Password")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
                                     .padding(.leading, 12)
-                               
+                                
                                 if isPaswordVisible {
                                     TextField("Enter Password", text: $txtPassword)
                                         .font(.customfont(.light, fontSize: 14))
@@ -237,7 +244,7 @@ struct SignupView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
                                 )
-
+                            
                             HStack {
                                 Image("Password")
                                     .resizable()
@@ -268,7 +275,7 @@ struct SignupView: View {
                                 }
                             }
                         }
-
+                        
                         HStack() {
                             Button {
                                 isCheck.toggle()
@@ -324,13 +331,29 @@ struct SignupView: View {
                     }
                     .padding(.top, 20)
                     .padding(.bottom, 20)
-
+                    
                 }// VSTACK
-            } // SCROLL VIEW
-            .ignoresSafeArea()
-            .scrollBounceBehavior(.basedOnSize)
-        } else {
-            // Fallback on earlier versions
+                .frame(maxWidth: .infinity, alignment: .top)
+                .background(Color.white)
+                .navigationBarBackButtonHidden(true)
+            }
+        } // ZSTACk
+        .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackButton {
+                        router.popView()
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    CustomLogo()
+                        .frame(width: 100, height: 120)
+                }
+                
+            }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
         }
     }
 }

@@ -37,6 +37,9 @@
 		CFA635982E8CF535006A62E7 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA635842E8CF535006A62E7 /* Inter-Regular.otf */; };
 		CFA635992E8CF535006A62E7 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA635852E8CF535006A62E7 /* Inter-SemiBold.otf */; };
 		CFA6359A2E8CF535006A62E7 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA635822E8CF535006A62E7 /* Inter-Medium.otf */; };
+		CFADBFC02E9D2DFD00A3161C /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBFBF2E9D2DFD00A3161C /* NavigationRouter.swift */; };
+		CFADBFC42E9D300A00A3161C /* AppNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBFC32E9D300A00A3161C /* AppNavigationView.swift */; };
+		CFADBFC62E9D371900A3161C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBFC52E9D371900A3161C /* RootView.swift */; };
 		CFB8D37A2E91586B00129E59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8D3792E91586B00129E59 /* HomeView.swift */; };
 		CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC40B2C2E91205400DAC1D3 /* ForgetPasswordView.swift */; };
 		CFC40B342E913C1600DAC1D3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC40B332E913C1600DAC1D3 /* LocationManager.swift */; };
@@ -84,6 +87,9 @@
 		CFA635862E8CF535006A62E7 /* Inter-SemiBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBoldItalic.otf"; sourceTree = "<group>"; };
 		CFA635872E8CF535006A62E7 /* Inter-Thin-BETA.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin-BETA.otf"; sourceTree = "<group>"; };
 		CFA635882E8CF535006A62E7 /* Inter-ThinItalic-BETA.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ThinItalic-BETA.otf"; sourceTree = "<group>"; };
+		CFADBFBF2E9D2DFD00A3161C /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		CFADBFC32E9D300A00A3161C /* AppNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationView.swift; sourceTree = "<group>"; };
+		CFADBFC52E9D371900A3161C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		CFB8D3792E91586B00129E59 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFC40B2C2E91205400DAC1D3 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		CFC40B332E913C1600DAC1D3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 				CFC40B332E913C1600DAC1D3 /* LocationManager.swift */,
 				CF8E51742E98DEA20018469A /* BackButton.swift */,
 				CF61AFAB2E99314C0064965A /* CustomLogo.swift */,
+				CFADBFC72E9D374300A3161C /* Navigation */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -235,6 +242,16 @@
 				CF9B61602E8D105900D0C230 /* View */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		CFADBFC72E9D374300A3161C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CFADBFBF2E9D2DFD00A3161C /* NavigationRouter.swift */,
+				CFADBFC32E9D300A00A3161C /* AppNavigationView.swift */,
+				CFADBFC52E9D371900A3161C /* RootView.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		CFC40B2B2E911FEA00DAC1D3 /* Signup */ = {
@@ -487,6 +504,7 @@
 				CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */,
 				CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */,
 				CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */,
+				CFADBFC02E9D2DFD00A3161C /* NavigationRouter.swift in Sources */,
 				CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */,
 				CFD1F0042E94F41B00C792A7 /* SearchDriverView.swift in Sources */,
 				CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */,
@@ -497,10 +515,12 @@
 				CFB8D37A2E91586B00129E59 /* HomeView.swift in Sources */,
 				CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */,
 				CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */,
+				CFADBFC62E9D371900A3161C /* RootView.swift in Sources */,
 				CFD0C9332E8BE7EA00E7FC9B /* GlisexabApp.swift in Sources */,
 				CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */,
 				CFC9C5F52E97D04D003F5BB9 /* SettingView.swift in Sources */,
 				CF237D3D2E93A791002A9013 /* SearchCompleterViewModel.swift in Sources */,
+				CFADBFC42E9D300A00A3161C /* AppNavigationView.swift in Sources */,
 				CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */,
 				CFD0C93A2E8BE93B00E7FC9B /* WelcomeView.swift in Sources */,
 				CFD1F0082E94FDB800C792A7 /* TrackingView.swift in Sources */,

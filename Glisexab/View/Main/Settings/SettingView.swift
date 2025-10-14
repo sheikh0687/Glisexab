@@ -9,88 +9,100 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @EnvironmentObject private var router: NavigationRouter
+    
     var body: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                ZStack {
-                    VStack() {
-                        ScrollView() {
-                            VStack(spacing: 20) {
-                                VStack {
-                                    HStack(spacing: 20) {
-                                        Image("leslie")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 100, height: 100)
-                                            .clipShape(Circle())
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text("Leslie Alexander")
-                                                .font(.customfont(.bold, fontSize: 16))
-                                            Button {
-                                                print("Navigate to profile view")
-                                            } label: {
-                                                Text("View Profile")
-                                                    .font(.customfont(.regular, fontSize: 16))
-                                                    .foregroundColor(.black)
-                                                    .underline()
-                                            }
-                                        }
-                                        Spacer()
+        ZStack {
+            VStack {
+                ScrollView {
+                    VStack(spacing: 20) {
+                        VStack {
+                            HStack(spacing: 20) {
+                                Image("leslie")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Leslie Alexander")
+                                        .font(.customfont(.bold, fontSize: 16))
+                                    Button {
+                                        print("Navigate to profile view")
+                                    } label: {
+                                        Text("View Profile")
+                                            .font(.customfont(.regular, fontSize: 16))
+                                            .foregroundColor(.black)
+                                            .underline()
                                     }
                                 }
-                                .padding()
-                                .background (
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color(.systemGray6))
-                                )
-                                
-                                VStack {
-                                    VStack(spacing: 10) {
-                                        optionRow(image: "userProfile24", text: "Edit Profile")
-                                        optionRow(image: "saveAddress24", text: "Save Address")
-                                        optionRow(image: "invite24", text: "Invite Friends")
-                                        optionRow(image: "password24", text: "Change Password")
-                                        optionRow(image: "privacy24", text: "Privacy Policy")
-                                        optionRow(image: "support24", text: "Support")
-                                        optionRow(image: "logout24", text: "Logout")
-                                    }
-                                    .padding()
-                                }
-                                .padding(.vertical, 10)
-                                .background (
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color(.systemGray6))
-                                )
+                                Spacer()
                             }
-                            .padding(.horizontal, 14)
                         }
-                    } // VSTACK
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.white)
-                    .padding(.top, 40)
-                    .ignoresSafeArea(edges: .bottom)
-                } // ZSTACK
-                .navigationTitle("Profile")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        BackButton {
-                            print("Navigation")
+                        .padding()
+                        .background (
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(.systemGray6))
+                        )
+                        
+                        VStack {
+                            VStack(spacing: 10) {
+                                optionRow(image: "userProfile24", text: "Edit Profile", action: {
+                                    router.push(to: .editProfile)
+                                })
+                                optionRow(image: "saveAddress24", text: "Save Address", action: {
+                                    router.push(to: .saveAddress)
+                                })
+                                optionRow(image: "invite24", text: "Invite Friends", action: {
+                                    print("Navigate")
+                                })
+                                optionRow(image: "password24", text: "Change Password", action: {
+                                    print("Navigate")
+                                })
+                                optionRow(image: "privacy24", text: "Privacy Policy", action: {
+                                    print("Navigate")
+                                })
+                                optionRow(image: "support24", text: "Support", action: {
+                                    print("Navigate")
+                                })
+                                optionRow(image: "logout24", text: "Logout", action: {
+                                    router.popToRoot()
+                                })
+                            }
+                            .padding()
                         }
+                        .padding(.vertical, 10)
+                        .background (
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(.systemGray6))
+                        )
+                        
                     }
+                    .padding(.horizontal, 14)
                 }
-                .onAppear {
-                    UINavigationBar.setTitleColor(.white)
+            } // VSTACK
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.white)
+            .padding(.top, 40)
+            .ignoresSafeArea(edges: .bottom)
+        } // ZSTACK
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton {
+                    router.popView()
                 }
-            } // Navigation Stack
-        } else {
-            // Fallback on earlier versions
+            }
+        }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
         }
     }
     
     @ViewBuilder
-    func optionRow(image: String, text: String) -> some View {
-        VStack(spacing: 0) {
+    func optionRow(image: String, text: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
             HStack {
                 Image(image)
                     .resizable()
@@ -112,6 +124,9 @@ struct SettingView: View {
                     )
             )
         }
+        .buttonStyle(PlainButtonStyle())
+//        VStack(spacing: 0) {
+//        }
     }
 }
 

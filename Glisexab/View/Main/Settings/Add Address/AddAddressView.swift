@@ -14,59 +14,56 @@ struct AddAddressView: View {
     @State private var txtCity:String = ""
     @State private var txtPincode:String = ""
     
+    @EnvironmentObject private var router: NavigationRouter
+    
     var body: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                ZStack {
-                    VStack {
-                        ScrollView {
-                            VStack(spacing: 20) {
-                                optionRow(heading: "Address Title", text: $txtAddressTitle, placeholder: "Address Title ex: Home")
-                                
-                                optionRow(heading: "Street", text: $txtStreet, placeholder: "Enter Street")
+        ZStack {
+            VStack {
+                ScrollView {
+                    VStack(spacing: 20) {
+                        optionRow(heading: "Address Title", text: $txtAddressTitle, placeholder: "Address Title ex: Home")
+                        
+                        optionRow(heading: "Street", text: $txtStreet, placeholder: "Enter Street")
 
-                                optionRow(heading: "City", text: $txtCity, placeholder: "Enter city")
+                        optionRow(heading: "City", text: $txtCity, placeholder: "Enter city")
 
-                                optionRow(heading: "Pincode", text: $txtPincode, placeholder: "Enter Pincode")
-                                
-                                Button("Save") {
-                                    // Edit action
-                                }
-                                .font(.customfont(.bold, fontSize: 16))
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.colorNeavyBlue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-
-                            }
-                            .padding(.vertical, 10)
-                            .padding()
-                            .background (
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color(.systemGray6))
-                            )
-                            .padding(.top, 40)
-                            .padding(.horizontal, 20)
-                        }// ScroolView
-                    }
-                    
-                } // Zstack
-                .navigationTitle("Add Address")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        BackButton {
-                            print("Navigation back")
+                        optionRow(heading: "Pincode", text: $txtPincode, placeholder: "Enter Pincode")
+                        
+                        Button("Save") {
+                            // Edit action
                         }
+                        .font(.customfont(.bold, fontSize: 16))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.colorNeavyBlue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+
                     }
-                }
-                .onAppear {
-                    UINavigationBar.setTitleColor(.white)
+                    .padding(.vertical, 10)
+                    .padding()
+                    .background (
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.systemGray6))
+                    )
+                    .padding(.top, 40)
+                    .padding(.horizontal, 20)
+                }// ScroolView
+            }
+            
+        } // Zstack
+        .navigationTitle("Add Address")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton {
+                    router.popView()
                 }
             }
-        } else {
-            // Fallback on earlier versions
+        }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
         }
     }
     

@@ -13,8 +13,11 @@ struct TrackingView: View {
     // MARK: PROPERTY
     @StateObject private var locationManager = LocationManager()
     @State private var showMoreDetail: Bool = false
-    
     @State private var showCancelPopup = false
+    @State private var showRideDetails = false
+    @State private var showDriverDetails = false
+    
+    @EnvironmentObject private var router: NavigationRouter
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -23,13 +26,7 @@ struct TrackingView: View {
             Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
                 .edgesIgnoringSafeArea(.all)
             
-            // MARK: TOP BAR
-            VStack(spacing: 0) {
-                TopBarView(showBack: false)
-                Spacer()
-            }
-            
-            // MARK: ADDRESS VIEW
+            // MARK: Top ADDRESS VIEW
             VStack(alignment: .leading) {
                 HStack {
                     Image("locationRed")
@@ -71,7 +68,7 @@ struct TrackingView: View {
                 Spacer()
             }
             .padding(.horizontal, 40)
-            .padding(.vertical, 60)
+            .padding(.vertical, 20)
             
             // MARK: BOTTOM VIEW
             VStack {
@@ -92,9 +89,21 @@ struct TrackingView: View {
                             .font(.customfont(.medium, fontSize: 16))
                         Spacer()
                         
-                        Button {
-                            print("Edit Address")
-                        } label: {
+                        Menu {
+                            Button {
+                                router.push(to: .rideDetails)
+                            } label: {
+                                Text("Ride Details")
+                                    .font(.customfont(.medium, fontSize: 14))
+                            }
+                            
+                            Button {
+                                router.push(to: .driverDetails)
+                            } label: {
+                                Text("Driver Details")
+                                    .font(.customfont(.medium, fontSize: 14))
+                            }
+                        } label : {
                             Image("editAddress")
                                 .resizable()
                                 .scaledToFit()
@@ -200,7 +209,7 @@ struct TrackingView: View {
                             Image(systemName: "mappin.circle.fill")
                                 .foregroundColor(.green)
                                 .font(.system(size: 18))
-
+                            
                             Text("2715 Ash Dr. San Jose, South Dakota 83475")
                                 .font(.customfont(.medium, fontSize: 14))
                                 .multilineTextAlignment(.leading)
@@ -257,6 +266,18 @@ struct TrackingView: View {
             }
         } // ZSTACK
         .animation(.easeInOut, value: showCancelPopup)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton {
+                    router.popView()
+                }
+            }
+        }
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
+        }
     }
 }
 

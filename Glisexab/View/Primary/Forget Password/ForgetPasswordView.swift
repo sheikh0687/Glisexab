@@ -10,73 +10,92 @@ import SwiftUI
 struct ForgetPasswordView: View {
     
     @State private var txtMobileNumber: String = ""
+    @EnvironmentObject private var router: NavigationRouter
     
     var body: some View {
-        VStack(spacing: 0) {
-            TopBarView(showBack: true)
-            
-            Spacer().frame(height: 20)
-            
-            Text("Reset Password")
-                .font(.customfont(.medium, fontSize: 18))
-                .padding(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            VStack(alignment: .leading, spacing: 20) {
-                
-                Text("Enter your registered\nmobile number")
-                    .font(.customfont(.regular, fontSize: 22))
-                    .padding(.leading, 4)
+        
+        ZStack {
+            VStack(spacing: 0) {
+                Text("Reset Password")
+                    .font(.customfont(.medium, fontSize: 18))
+                    .padding(.leading)
+                    .padding(.top, 40)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 20)
-                    .padding(.bottom, 20)
                 
-                Text("Contact Number")
-                    .font(.customfont(.medium, fontSize: 14))
-                    .padding(.leading, 4)
-                
-                ZStack {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.15))
-                        .frame(height: 45)
-                        .cornerRadius(10)
-                        .overlay (
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
-                        )
+                VStack(alignment: .leading, spacing: 20) {
                     
-                    HStack {
-                        Image("Contact")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
-                            .padding(.leading, 12)
+                    Text("Enter your registered\nmobile number")
+                        .font(.customfont(.regular, fontSize: 22))
+                        .padding(.leading, 4)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 20)
+                        .padding(.bottom, 20)
+                    
+                    Text("Contact Number")
+                        .font(.customfont(.medium, fontSize: 14))
+                        .padding(.leading, 4)
+                    
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.15))
+                            .frame(height: 45)
+                            .cornerRadius(10)
+                            .overlay (
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
+                            )
                         
-                        TextField("Enter Registered Number", text: $txtMobileNumber)
-                            .font(.customfont(.light, fontSize: 14))
-                            .padding(.leading, 4)
+                        HStack {
+                            Image("Contact")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .padding(.leading, 12)
+                            
+                            TextField("Enter Registered Number", text: $txtMobileNumber)
+                                .font(.customfont(.light, fontSize: 14))
+                                .padding(.leading, 4)
+                        }
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Send OTP")
+                            .font(.customfont(.bold, fontSize: 16))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 45)
+                            .background(Color.colorNeavyBlue)
+                            .cornerRadius(10)
+                    }
+                    .padding(.top, 40)
+                }
+                .padding()
+                
+                Spacer()
+                
+            }// VSTACK
+            .frame(maxWidth: .infinity, alignment: .top)
+            .background(Color.white)
+            .navigationBarBackButtonHidden(true)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackButton {
+                        router.popView()
                     }
                 }
                 
-                Button {
-                    
-                } label: {
-                    Text("Send OTP")
-                        .font(.customfont(.bold, fontSize: 16))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 45)
-                        .background(Color.colorNeavyBlue)
-                        .cornerRadius(10)
+                ToolbarItem(placement: .topBarTrailing) {
+                    CustomLogo()
+                        .frame(width: 100, height: 120)
                 }
-                .padding(.top, 40)
             }
-            .padding()
-            
-            Spacer()
-
-        }// VSTACK
-        .ignoresSafeArea()
+        .onAppear {
+            UINavigationBar.setTitleColor(.white)
+        }
     }
 }
 
