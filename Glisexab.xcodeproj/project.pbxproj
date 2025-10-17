@@ -16,6 +16,8 @@
 		CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66AE842E93C04900C83DD1 /* BookingView.swift */; };
 		CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */; };
 		CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89E5042E99056E0026C76C /* SaveAddressView.swift */; };
+		CF8DE87F2EA26BC500F75D73 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8DE87E2EA26BC500F75D73 /* HistoryView.swift */; };
+		CF8DE8812EA26C3800F75D73 /* CustomButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8DE8802EA26C3800F75D73 /* CustomButtonAction.swift */; };
 		CF8E51752E98DEA20018469A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51742E98DEA20018469A /* BackButton.swift */; };
 		CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51772E98E0250018469A /* EditProfileView.swift */; };
 		CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51792E98E89B0018469A /* AddAddressView.swift */; };
@@ -66,6 +68,8 @@
 		CF66AE842E93C04900C83DD1 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CF89E5042E99056E0026C76C /* SaveAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressView.swift; sourceTree = "<group>"; };
+		CF8DE87E2EA26BC500F75D73 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		CF8DE8802EA26C3800F75D73 /* CustomButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonAction.swift; sourceTree = "<group>"; };
 		CF8E51742E98DEA20018469A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		CF8E51772E98E0250018469A /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		CF8E51792E98E89B0018469A /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				CFD0CD252E8D4902001A7FFD /* TopBarView.swift */,
 				CFC40B332E913C1600DAC1D3 /* LocationManager.swift */,
 				CF8E51742E98DEA20018469A /* BackButton.swift */,
+				CF8DE8802EA26C3800F75D73 /* CustomButtonAction.swift */,
 				CF61AFAB2E99314C0064965A /* CustomLogo.swift */,
 				CFADBFC72E9D374300A3161C /* Navigation */,
 			);
@@ -297,6 +302,7 @@
 				CF237D392E93A3AE002A9013 /* Home */,
 				CF0C28482E93EE95007F9C3B /* Booking Detail */,
 				CFD1EFFF2E94DDCE00C792A7 /* Schedule Booking */,
+				CF8DE87E2EA26BC500F75D73 /* HistoryView.swift */,
 				CFD1F0022E94F16E00C792A7 /* PopUp */,
 				CFD1F0062E94FC4000C792A7 /* Search Driver */,
 				CFD1F0092E94FDBD00C792A7 /* Tracking */,
@@ -503,9 +509,11 @@
 			files = (
 				CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */,
 				CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */,
+				CF8DE8812EA26C3800F75D73 /* CustomButtonAction.swift in Sources */,
 				CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */,
 				CFADBFC02E9D2DFD00A3161C /* NavigationRouter.swift in Sources */,
 				CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */,
+				CF8DE87F2EA26BC500F75D73 /* HistoryView.swift in Sources */,
 				CFD1F0042E94F41B00C792A7 /* SearchDriverView.swift in Sources */,
 				CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */,
 				CF8E51752E98DEA20018469A /* BackButton.swift in Sources */,

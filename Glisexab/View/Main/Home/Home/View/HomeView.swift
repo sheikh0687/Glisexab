@@ -93,10 +93,12 @@ struct HomeView: View {
                             selectedTab = index
                             if index == 0 {
                                 print("Home Tab")
+                                router.push(to: .home)
                             } else if index == 1 {
                                 print("Chat Tab")
                             } else if index == 2 {
                                 print("History Tab")
+                                router.push(to: .history)
                             } else {
                                 print("Profile Tab")
                                 router.push(to: .settings)

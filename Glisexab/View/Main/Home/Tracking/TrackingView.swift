@@ -73,7 +73,7 @@ struct TrackingView: View {
             // MARK: BOTTOM VIEW
             VStack {
                 Spacer()
-                VStack(spacing: 0) {
+                 VStack(spacing: 0) {
                     // Driver Timing
                     HStack {
                         Button {

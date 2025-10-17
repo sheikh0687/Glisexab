@@ -113,7 +113,7 @@ struct OnboardingView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden()
-        .ignoresSafeArea()
+//        .ignoresSafeArea()
 
         
 //        if #available(iOS 16.0, *) {

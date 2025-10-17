@@ -22,7 +22,7 @@ struct RootView: View {
             .onAppear {
                 router.path.removeAll()
             }
-        }
+        } 
     }
 }
 

@@ -19,6 +19,7 @@ enum AppNavigationView: Hashable {
     case trackDriver
     case rideDetails
     case driverDetails
+    case history
     case settings
     case editProfile
     case addAddress
@@ -55,6 +56,8 @@ enum AppNavigationView: Hashable {
             AddAddressView()
         case .saveAddress:
             SaveAddressView()
+        case .history:
+            HistoryView()
         }
     }
 }
