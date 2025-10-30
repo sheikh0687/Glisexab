@@ -30,7 +30,7 @@ struct BookingView: View {
     
     @State private var isBookingForOther: Bool = false
     
-    private var arrayOfRides:[RideOption] = [
+    var arrayOfRides:[RideOption] = [
         RideOption(imageName: "hundai", title: "Hyundai | mini", description: "4 Person | 2 Bags", price: "$120"),
         RideOption(imageName: "sedan", title: "Sedan", description: "4 Person | 2 Bags", price: "$150"),
         RideOption(imageName: "luxury", title: "Luxury", description: "4 Person | 2 Bags", price: "$170"),
@@ -50,6 +50,8 @@ struct BookingView: View {
     @State private var showingPopup = false
     
     @EnvironmentObject private var router: NavigationRouter
+    
+    var data: BookingDetailData
     
     //MARK: MAIN BODY
     var body: some View {
@@ -79,14 +81,14 @@ struct BookingView: View {
                                 Text("Pickup Address")
                                     .font(.customfont(.regular, fontSize: 13))
                                     .foregroundColor(.gray)
-                                Text("1901 Thornridge Cir. Shiloh, Hawaii 81063")
+                                Text(data.pickup.address)
                                     .font(.customfont(.medium, fontSize: 14))
                             }
                             VStack(alignment: .leading, spacing: 0) {
                                 Text("Dropoff Address")
                                     .font(.customfont(.regular, fontSize: 13))
                                     .foregroundColor(.gray)
-                                Text("2715 Ash Dr. San Jose, South Dakota 83475")
+                                Text(data.dropoff.address)
                                     .font(.customfont(.medium, fontSize: 14))
                             }
                         }
@@ -194,6 +196,7 @@ struct BookingView: View {
                             }
                             .animation(.easeInOut, value: selectedVehcileIndex)
                         }
+                        .cornerRadius(15)
                     } // VSTACK
                     .padding(.vertical, 10)
                     .padding(.horizontal, 10)
@@ -224,12 +227,14 @@ struct BookingView: View {
                         VStack(spacing: 16) {
                             ForEach(arrayOfCards.indices, id: \.self) { card in
                                 HStack(spacing: 4) {
+                                    
                                     Text(arrayOfCards[card].type)
                                         .font(.customfont(.medium, fontSize: 14))
                                     Text(arrayOfCards[card].maskedNumber)
                                         .font(.customfont(.medium, fontSize: 14))
                                     
                                     Spacer()
+                                    
                                     ZStack {
                                         Circle()
                                             .stroke(selectedCardIndex == card ? Color.black : Color.black, lineWidth: 2)
@@ -330,5 +335,8 @@ struct DottedLine: Shape {
 }
 
 #Preview {
-    BookingView()
+    BookingView(data: BookingDetailData(
+        pickup: LocationDetail(address: "123 Main St", latitude: 12.34, longitude: 56.78),
+        dropoff: LocationDetail(address: "789 Park Ave", latitude: 98.76, longitude: 54.32)
+    ))
 }

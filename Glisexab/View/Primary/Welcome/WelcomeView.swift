@@ -58,8 +58,8 @@ struct WelcomeView: View {
                 .padding()
             }// SCROLLVIEW
         }// ZSTACK
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden()
+//        .navigationBarHidden(true)
+//        .navigationBarBackButtonHidden()
         .ignoresSafeArea()
         
 //        if #available(iOS 16.0, *) {

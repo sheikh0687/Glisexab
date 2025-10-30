@@ -10,121 +10,228 @@ import _MapKit_SwiftUI
 
 struct HomeView: View {
     
-    @StateObject private var locationManager = LocationManager()
-    
+    @StateObject private var viewModel = LocationSearchViewModel()
     @State private var selectedTab: Int = 0
-    @State private var destination: String = ""
+    @State private var showSuggestions = false
+    @State private var isPickup = true
+    @State private var showBookingAlert = false
+    @StateObject private var keyboard = KeyboardResponder()
+    @EnvironmentObject private var router: NavigationRouter
     
     let tabs = [("home", "Home"), ("chat", "Chat"), ("history", "History"), ("profile", "Profile")]
     
-    @EnvironmentObject private var router: NavigationRouter
-    
     var body: some View {
         ZStack(alignment: .top) {
-            // Full background map
-            Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
-                .edgesIgnoringSafeArea(.all)
+            CustomMapView (
+                region: $viewModel.region,
+                annotations: makeAnnotations(),
+                routes: viewModel.route.map { [$0] } ?? []
+            )
+            .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 0) {
-
-                // Floating search card
-                VStack(spacing: 0) {
-                    HStack(spacing: 8) {
-                        Image(systemName: "mappin.and.ellipse")
-                            .foregroundColor(.blue)
-                        Text("Elgin St. Celina, Delaware 10299")
-                            .font(.customfont(.light, fontSize: 14))
-                        Spacer()
-                    }
-                    .padding(.top, 16)
+            VStack(spacing: 18) {
+                VStack(spacing: 12) {
                     
-                    TextField("To where", text: $destination)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 8)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                        .padding(.top, 12)
+                    addressPicker (
+                        isPickup: true,
+                        label: "Pickup Address",
+                        text: $viewModel.pickupAddress
+                    )
+                    .onTapGesture {
+                        isPickup = true
+                        showSuggestions = true
+                    }
+                    
+                    addressPicker (
+                        isPickup: false,
+                        label: "Drop Address",
+                        text: $viewModel.dropoffAddress
+                    )
+                    .onTapGesture {
+                        isPickup = false
+                        showSuggestions = true
+                    }
                     
                     Button {
-                        router.push(to: .bookingDetails)
+                        
+                        guard let pickupCoordinate = viewModel.pickupCoordinate,
+                              let dropoffCoordinate = viewModel.dropoffCoordinate,
+                                !viewModel.pickupAddress.isEmpty,
+                              !viewModel.dropoffAddress.isEmpty
+                        else {
+                            showBookingAlert = true
+                            return
+                        }
+                        
+                        let bookingData = BookingDetailData (
+                            pickup: LocationDetail(address: viewModel.pickupAddress,
+                                                   latitude: pickupCoordinate.latitude,
+                                                   longitude: pickupCoordinate.longitude),
+                            dropoff: LocationDetail(address: viewModel.dropoffAddress,
+                                                    latitude: dropoffCoordinate.latitude,
+                                                    longitude: dropoffCoordinate.longitude)
+                        )
+                        
+                        router.push(to: .bookingDetails(bookingData))
                     } label: {
                         Text("Book Trip")
-                            .font(.customfont(.bold, fontSize: 16))
-                            .foregroundColor(.white)
+                            .font(.customfont(.bold, fontSize: 18))
                             .frame(maxWidth: .infinity)
                             .frame(height: 45)
-                            .background(Color.colorNeavyBlue)
+                            .background(.colorNeavyBlue)
                             .cornerRadius(10)
-                            .padding(.top, 14)
-                            .padding(.bottom, 14)
+                            .foregroundColor(.white)
+                            .shadow(radius: 2)
+                    }
+                    .alert("Address Required", isPresented: $showBookingAlert) {
+                        Button("OK", role: .cancel) { }
+                    } message: {
+                        Text("Please select both Pickup and Drop-off addresses before booking.")
+                    }
+                    
+                    if showSuggestions {
+                        ScrollView {
+                            VStack(spacing: 0) {
+                                ForEach(viewModel.searchResults.prefix(7), id: \.self) { item in
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(item.title)
+                                            .font(.headline)
+                                        if !item.subtitle.isEmpty {
+                                            Text(item.subtitle)
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
+                                    }
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 12)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.white)
+                                    .onTapGesture {
+                                        viewModel.selectCompletion(item, isPickup: isPickup)
+                                        showSuggestions = false
+                                    }
+                                    Divider()
+                                }
+                            }
+                        }
+                        .frame(minHeight: 20, maxHeight: 210)
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemBackground)))
+                        .shadow(radius: 4)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
-                .padding(.horizontal, 20)
-                .background(Color.white)
-                .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.09), radius: 8, x: 0, y: 4)
-                .frame(maxWidth: 350)
-                .padding(.bottom, 12)
+                .padding(20)
+                .background(.ultraThinMaterial)
+                .cornerRadius(22)
+                .shadow(color: .black.opacity(0.12), radius: 12, x: 0, y: 5)
+                .padding(.horizontal, 18)
                 
                 Spacer()
                 
-                // Bottom Navigation
-                
-                HStack(spacing: 10) {
-                    ForEach(tabs.indices, id: \.self) { index in
-                        VStack(spacing: 4) {
-                            Image(tabs[index].0)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 32, height: 32)
-                            Text(tabs[index].1)
-                                .font(.customfont(.medium, fontSize: 14))
-                                .foregroundColor(.colorNeavyBlue)
-                        }
-                        .frame(width: 70, height: 70)
-                        .background(Color.white)
-                        .cornerRadius(12)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(selectedTab == index ? Color.blue : Color.clear, lineWidth: 3)
-                        )
-                        .shadow(radius: 2)
-                        .onTapGesture {
-                            selectedTab = index
-                            if index == 0 {
-                                print("Home Tab")
-                                router.push(to: .home)
-                            } else if index == 1 {
-                                print("Chat Tab")
-                            } else if index == 2 {
-                                print("History Tab")
-                                router.push(to: .history)
-                            } else {
-                                print("Profile Tab")
-                                router.push(to: .settings)
+                // Bottom Navigation Bar
+                if !keyboard.keyboardShown {
+                    HStack(spacing: 10) {
+                        ForEach(tabs.indices, id: \.self) { index in
+                            VStack(spacing: 4) {
+                                Image(tabs[index].0)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 32, height: 32)
+                                Text(tabs[index].1)
+                                    .font(.customfont(.medium, fontSize: 14))
+                                    .foregroundColor(.colorNeavyBlue)
+                            }
+                            .frame(width: 70, height: 70)
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(selectedTab == index ? Color.blue : Color.clear, lineWidth: 3)
+                            )
+                            .shadow(radius: 2)
+                            .onTapGesture {
+                                selectedTab = index
+                                switch index {
+                                case 0: router.push(to: .home)
+                                case 1: router.push(to: .chat)
+                                case 2: router.push(to: .history)
+                                case 3: router.push(to: .settings)
+                                default: break
+                                }
                             }
                         }
                     }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 12)
+                    .background(Color.colorNeavyBlue)
+                    .shadow(color: Color.black.opacity(0.25), radius: 12, x: 0, y: 6)
+                    
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 12)
-                .background(Color.colorNeavyBlue)
-                .shadow(color: Color.black.opacity(0.25), radius: 12, x: 0, y: 6)
             }
             .padding(.top, 20)
             .frame(maxWidth: .infinity, alignment: .top)
             .navigationBarBackButtonHidden(true)
-        }
-        .navigationBarTitleDisplayMode(.inline)
+            .onTapGesture {
+                showSuggestions = false
+            }
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     CustomLogo()
                         .frame(width: 100, height: 120)
                 }
             }
+        }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
+            selectedTab = 0
         }
+        .animation(.easeOut, value: showSuggestions)
+        .animation(.easeOut, value: keyboard.keyboardShown)
+    }
+    
+    func addressPicker(isPickup: Bool, label: String, text: Binding<String>) -> some View {
+        HStack {
+            Image(systemName: isPickup ? "mappin.and.ellipse" : "flag")
+                .foregroundColor(.blue)
+            TextField(label, text: text)
+                .onChange(of: text.wrappedValue, perform: { value in
+                    viewModel.searchText = value
+                })
+            Spacer()
+            // Show clear button only if there is some text
+            if !text.wrappedValue.isEmpty {
+                Button {
+                    text.wrappedValue = ""
+                    viewModel.searchText = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.vertical, 10)
+        .padding(.horizontal, 12)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(10)
+    }
+    
+    func makeAnnotations() -> [MKPointAnnotation] {
+        var result: [MKPointAnnotation] = []
+        if let pickup = viewModel.pickupCoordinate {
+            let ann = MKPointAnnotation()
+            ann.coordinate = pickup
+            ann.title = "Pickup"
+            result.append(ann)
+        }
+        if let drop = viewModel.dropoffCoordinate {
+            let ann = MKPointAnnotation()
+            ann.coordinate = drop
+            ann.title = "Drop-off"
+            result.append(ann)
+        }
+        return result
     }
 }
 

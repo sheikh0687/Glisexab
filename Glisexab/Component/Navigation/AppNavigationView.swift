@@ -14,7 +14,7 @@ enum AppNavigationView: Hashable {
     case signup
     case forgetPassword
     case home
-    case bookingDetails
+    case bookingDetails(BookingDetailData)
     case scheduleBooking
     case trackDriver
     case rideDetails
@@ -24,6 +24,7 @@ enum AppNavigationView: Hashable {
     case editProfile
     case addAddress
     case saveAddress
+    case chat
     
     @ViewBuilder
     var view: some View {
@@ -40,8 +41,8 @@ enum AppNavigationView: Hashable {
             HomeView()
         case .settings:
             SettingView()
-        case .bookingDetails:
-            BookingView()
+        case .bookingDetails(let data):
+            BookingView(data: data)
         case .scheduleBooking:
             ScheduleBookingView()
         case .trackDriver:
@@ -58,6 +59,8 @@ enum AppNavigationView: Hashable {
             SaveAddressView()
         case .history:
             HistoryView()
+        case .chat:
+            ChatView()
         }
     }
 }

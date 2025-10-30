@@ -10,19 +10,27 @@ import SwiftUI
 struct RootView: View {
     
     @EnvironmentObject var router: NavigationRouter
+    @EnvironmentObject private var appState: AppState
     
     var body: some View {
         if #available(iOS 16.0, *) {
             NavigationStack(path: $router.path) {
-                WelcomeView()
-                    .navigationDestination(for: AppNavigationView.self) { destination in
-                        destination.view // This is your enum’s view property
-                    }
+                if appState.isLoggedIn {
+                    HomeView()
+                        .navigationDestination(for: AppNavigationView.self) { destination in
+                            destination.view // This is your enum’s view property
+                        }
+                } else {
+                    WelcomeView()
+                        .navigationDestination(for: AppNavigationView.self) { destination in
+                            destination.view // This is your enum’s view property
+                        }
+                }
             }
             .onAppear {
                 router.path.removeAll()
             }
-        } 
+        }
     }
 }
 

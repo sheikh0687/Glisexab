@@ -11,6 +11,8 @@ struct LoginView: View {
     
     @Environment(\.dismiss) private var dissmiss
     @EnvironmentObject var router: NavigationRouter
+    @EnvironmentObject var appState: AppState
+    @StateObject var viewModel = LoginViewModel()
     
     @State private var txtContactNumber: String = ""
     @State private var txtPassword: String = ""
@@ -64,7 +66,7 @@ struct LoginView: View {
                                 .fill(Color.gray.opacity(0.15))
                                 .frame(height: 45)
                                 .cornerRadius(10)
-                                .overlay(
+                                .overlay (
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
                                 )
@@ -105,7 +107,13 @@ struct LoginView: View {
                     .padding(.top, 15)
                     
                     Button {
-                        router.push(to: .home)
+                        viewModel.txtMobileNum = txtContactNumber
+                        viewModel.txtPassword = txtPassword
+                        viewModel.createLogin()
+                        viewModel.cloSuccessRes = {
+                            router.push(to: .home)
+                            appState.isLoggedIn = true
+                        }
                     } label: {
                         Text("Signin")
                             .font(.customfont(.bold, fontSize: 16))
@@ -133,10 +141,12 @@ struct LoginView: View {
                 }// VSTACK
                 .frame(maxWidth: .infinity, alignment: .top)
                 .background(Color.white)
-                .navigationBarBackButtonHidden(true)
+                
                 
             }//SCROOLVIEW
         }
+        .navigationBarHidden(false)
+        .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -149,7 +159,6 @@ struct LoginView: View {
                     CustomLogo()
                         .frame(width: 100, height: 120)
                 }
-                
             }
         .onAppear {
             UINavigationBar.setTitleColor(.white)

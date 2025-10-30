@@ -10,7 +10,7 @@ import MapKit
 
 struct SearchDriverView: View {
     
-    @StateObject private var locationManager = LocationManager()
+    @StateObject private var locationManager = LocationSearchViewModel()
     @State private var progress: CGFloat = 0.45
 
     var body: some View {
@@ -18,10 +18,10 @@ struct SearchDriverView: View {
             Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
                 .edgesIgnoringSafeArea(.all)
 
-            VStack(spacing: 0) {
-                TopBarView(showBack: false)
-                Spacer()
-            }
+//            VStack(spacing: 0) {
+//                TopBarView(showBack: false)
+//                Spacer()
+//            }
             
             // BOTTOM FLOATING CARD
             VStack {

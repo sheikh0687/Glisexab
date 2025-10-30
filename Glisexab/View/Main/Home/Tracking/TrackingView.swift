@@ -11,7 +11,7 @@ import MapKit
 struct TrackingView: View {
     
     // MARK: PROPERTY
-    @StateObject private var locationManager = LocationManager()
+    @StateObject private var locationManager = LocationSearchViewModel()
     @State private var showMoreDetail: Bool = false
     @State private var showCancelPopup = false
     @State private var showRideDetails = false

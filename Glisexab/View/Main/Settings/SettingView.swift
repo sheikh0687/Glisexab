@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingView: View {
     
     @EnvironmentObject private var router: NavigationRouter
+    @EnvironmentObject private var appState: AppState
     
     var body: some View {
         ZStack {
@@ -66,6 +67,7 @@ struct SettingView: View {
                                 })
                                 optionRow(image: "logout24", text: "Logout", action: {
                                     router.popToRoot()
+                                    appState.isLoggedIn = false
                                 })
                             }
                             .padding()

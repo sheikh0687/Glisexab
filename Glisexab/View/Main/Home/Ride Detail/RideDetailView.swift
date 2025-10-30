@@ -11,7 +11,7 @@ import MapKit
 struct RideDetailView: View {
     
     // MARK: PROPERTIES
-    @StateObject private var locationManager = LocationManager()
+    @StateObject private var locationManager = LocationSearchViewModel()
     @EnvironmentObject private var router: NavigationRouter
     
     var body: some View {
