@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CountryPicker
 
 struct SignupView: View {
     
@@ -21,16 +22,18 @@ struct SignupView: View {
     @State private var isCheck = false
     @State private var isPaswordVisible = false
     @State private var isConfirmPasswordVisible = false
+    @State private var countryObj: Country?
+    @State private var showCountryPicker = false
+    @State private var showAddressPicker = false
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dissmiss
     @EnvironmentObject private var router: NavigationRouter
+    @EnvironmentObject var appState: AppState
+    
+    @StateObject var viewModel = SignupViewModel()
     
     var body: some View {
-        
-//        if #available(iOS 16.4, *) {
-//        } else {
-//            // Fallback on earlier versions
-//        }
         
         ZStack {
             ScrollView {
@@ -54,7 +57,7 @@ struct SignupView: View {
                                 .fill(Color.gray.opacity(0.15))
                                 .frame(height: 45)
                                 .cornerRadius(10)
-                                .overlay(
+                                .overlay     (
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 0.8)
                                 )
@@ -141,16 +144,26 @@ struct SignupView: View {
                                 )
                             
                             HStack {
-                                Image("Contact")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                                    .padding(.leading, 12)
+                                
+                                Button {
+                                    showCountryPicker = true
+                                } label: {
+                                    if let countryObj = countryObj {
+                                        Text("\(countryObj.isoCode.getFlag())")
+                                            .font(.customfont(.medium, fontSize: 28))
+                                            .padding(.leading, 12)
+                                        
+                                        Text("+\(countryObj.phoneCode)")
+                                            .font(.customfont(.medium, fontSize: 16))
+                                            .foregroundColor(.black)
+                                    }
+                                }
                                 
                                 TextField("Enter Contact Number", text: $txtContactNumber)
                                     .font(.customfont(.light, fontSize: 14))
                                     .padding(.leading, 4)
                             }
+                            
                         }
                         
                         Text("Location")
@@ -175,11 +188,11 @@ struct SignupView: View {
                                     .padding(.leading, 12)
                                 
                                 Button {
-                                    print("Call Address Class")
+                                    showAddressPicker = true
                                 } label: {
-                                    Text(txtAddress.isEmpty ? "Select Address" : txtAddress)
+                                    Text(viewModel.address ?? "Select Address")
                                         .font(.customfont(.light, fontSize: 14))
-                                        .foregroundColor(txtAddress.isEmpty ? .gray : .black)
+                                        .foregroundColor(.black)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.leading, 4)
                                 }
@@ -306,15 +319,36 @@ struct SignupView: View {
                     .padding(.top, 24)
                     
                     Button {
-                        
+                        Task {
+                            viewModel.firstName = txtFirstName
+                            viewModel.lastName = txtLastName
+                            viewModel.email = txtEmail
+                            viewModel.password = txtPassword
+                            viewModel.confirmPassword = txtConfirmPassword
+                            viewModel.mobile = txtContactNumber
+                            viewModel.mobileCode = countryObj?.phoneCode ?? ""
+                            await viewModel.signUp()
+                            if viewModel.newUser != nil {
+                                router.push(to: .home)
+                                appState.isLoggedIn = true
+                            }
+                        }
                     } label: {
-                        Text("Signup")
-                            .font(.customfont(.bold, fontSize: 16))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .background(Color.colorNeavyBlue)
-                            .cornerRadius(10)
+                        if viewModel.isLoading {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                        } else {
+                            Text("Signup")
+                                .font(.customfont(.bold, fontSize: 16))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .background(Color.colorNeavyBlue)
+                                .cornerRadius(10)
+                        }
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 40)
@@ -339,21 +373,53 @@ struct SignupView: View {
             }
         } // ZSTACk
         .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    BackButton {
-                        router.popView()
-                    }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton {
+                    router.popView()
                 }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    CustomLogo()
-                        .frame(width: 100, height: 120)
-                }
-                
             }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                CustomLogo()
+                    .frame(width: 100, height: 120)
+            }
+            
+        }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
+            self.countryObj = Country(phoneCode: "91", isoCode: "IN")
+        }
+        .sheet(isPresented: $showCountryPicker) {
+            CountryPickerUI(country: $countryObj)
+        }
+        .sheet(isPresented: $showAddressPicker) {
+            NavigationView {
+                addressView()
+            }
+            .interactiveDismissDisabled()
+        }
+    }
+    
+    private func addressView() -> some View {
+        let addressViewModel = AddressSearchViewModel()
+        addressViewModel.delegate = self
+        return AnyView(AddressPickerView(searchViewModel: addressViewModel))
+    }
+}
+
+extension SignupView: Address {
+    func didSelectAddress(result: Result<LocationData, LocationError>) {
+        switch result {
+        case .success(let result):
+            viewModel.address = result.address ?? ""
+            viewModel.city = result.city ?? ""
+            viewModel.state = result.state ?? ""
+            viewModel.latitude = result.latitude ?? 0.0
+            viewModel.longitude = result.longitude ?? 0.0
+        case .failure(let error):
+            //            $viewModel.error = .customError(message: error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
 }

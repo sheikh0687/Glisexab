@@ -1,5 +1,5 @@
 {
-  "originHash" : "5c705416e8ee263fd5ca0aaebc01e05f00d9f7219cd3e9f46799bb660cfc243d",
+  "originHash" : "a06434342b6a80886a6bb90f0e53e80cab0a37d396fd0b93cdf2d32ea135c587",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
         "version" : "5.10.2"
+      }
+    },
+    {
+      "identity" : "countrypicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mobven/CountryPicker/",
+      "state" : {
+        "revision" : "6225c2933fea6abdb8171718b22bbe289706a7aa",
+        "version" : "2.0.3"
       }
     },
     {

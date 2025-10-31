@@ -19,20 +19,29 @@
 		CF5659872EB3785800A4B3D7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5659862EB3785800A4B3D7 /* LoginRequest.swift */; };
 		CF5659892EB3789600A4B3D7 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5659882EB3789600A4B3D7 /* LoginResponse.swift */; };
 		CF56598C2EB37A4500A4B3D7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF56598B2EB37A4500A4B3D7 /* Alamofire */; };
-		CF56598F2EB37AB900A4B3D7 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56598E2EB37AB900A4B3D7 /* ApiManager.swift */; };
-		CF5659912EB37B0E00A4B3D7 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5659902EB37B0E00A4B3D7 /* ApiService.swift */; };
 		CF5659942EB37B8F00A4B3D7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5659932EB37B8F00A4B3D7 /* Router.swift */; };
 		CF5659962EB37C6200A4B3D7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5659952EB37C6200A4B3D7 /* LoginViewModel.swift */; };
 		CF5659982EB37FBB00A4B3D7 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5659972EB37FBB00A4B3D7 /* EncodableExtension.swift */; };
 		CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */; };
 		CF61AFAC2E99314C0064965A /* CustomLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61AFAB2E99314C0064965A /* CustomLogo.swift */; };
 		CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66AE842E93C04900C83DD1 /* BookingView.swift */; };
+		CF84300F2EB485B500DFE02F /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF84300E2EB485B500DFE02F /* Api.swift */; };
+		CF8430112EB485BE00DFE02F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8430102EB485BE00DFE02F /* Service.swift */; };
+		CF8430142EB4865B00DFE02F /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8430132EB4865B00DFE02F /* InternetConnection.swift */; };
+		CF84301A2EB4868D00DFE02F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8430172EB4868D00DFE02F /* MBProgressHUD.m */; };
+		CF84301B2EB4868D00DFE02F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8430192EB4868D00DFE02F /* Reachability.m */; };
+		CF84301F2EB49B4D00DFE02F /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = CF84301E2EB49B4D00DFE02F /* CountryPicker */; };
 		CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */; };
 		CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89E5042E99056E0026C76C /* SaveAddressView.swift */; };
 		CF8DE8812EA26C3800F75D73 /* CustomButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8DE8802EA26C3800F75D73 /* CustomButtonAction.swift */; };
 		CF8E51752E98DEA20018469A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51742E98DEA20018469A /* BackButton.swift */; };
 		CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51772E98E0250018469A /* EditProfileView.swift */; };
 		CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E51792E98E89B0018469A /* AddAddressView.swift */; };
+		CF8FAF5B2EB4B5AA0062DA16 /* CountryPickerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FAF5A2EB4B5AA0062DA16 /* CountryPickerUI.swift */; };
+		CF8FAF602EB4BD470062DA16 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FAF5F2EB4BD470062DA16 /* SignupViewModel.swift */; };
+		CF8FAF652EB4C3440062DA16 /* AddressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FAF642EB4C3440062DA16 /* AddressPickerView.swift */; };
+		CF8FAF672EB4C3540062DA16 /* AddressPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FAF662EB4C3540062DA16 /* AddressPickerViewModel.swift */; };
+		CF8FAF702EB4CD5A0062DA16 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FAF6F2EB4CD5A0062DA16 /* LocationData.swift */; };
 		CF939ED62EB1EDA3007B982A /* CustomMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF939ED52EB1EDA3007B982A /* CustomMapView.swift */; };
 		CF939ED82EB1EE60007B982A /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF939ED72EB1EE5F007B982A /* LocationSearchViewModel.swift */; };
 		CFA635892E8CF535006A62E7 /* Inter-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFA6357B2E8CF535006A62E7 /* Inter-ExtraBold.otf */; };
@@ -84,20 +93,31 @@
 		CF5389232E9668EB000F9B64 /* DriverDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailView.swift; sourceTree = "<group>"; };
 		CF5659862EB3785800A4B3D7 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		CF5659882EB3789600A4B3D7 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		CF56598E2EB37AB900A4B3D7 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
-		CF5659902EB37B0E00A4B3D7 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		CF5659932EB37B8F00A4B3D7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CF5659952EB37C6200A4B3D7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CF5659972EB37FBB00A4B3D7 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
 		CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
 		CF61AFAB2E99314C0064965A /* CustomLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogo.swift; sourceTree = "<group>"; };
 		CF66AE842E93C04900C83DD1 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		CF84300E2EB485B500DFE02F /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		CF8430102EB485BE00DFE02F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		CF8430132EB4865B00DFE02F /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
+		CF8430162EB4868D00DFE02F /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CF8430172EB4868D00DFE02F /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CF8430182EB4868D00DFE02F /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CF8430192EB4868D00DFE02F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CF84301C2EB4868F00DFE02F /* Glisexab-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Glisexab-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CF89E5042E99056E0026C76C /* SaveAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressView.swift; sourceTree = "<group>"; };
 		CF8DE8802EA26C3800F75D73 /* CustomButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonAction.swift; sourceTree = "<group>"; };
 		CF8E51742E98DEA20018469A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		CF8E51772E98E0250018469A /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		CF8E51792E98E89B0018469A /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
+		CF8FAF5A2EB4B5AA0062DA16 /* CountryPickerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerUI.swift; sourceTree = "<group>"; };
+		CF8FAF5F2EB4BD470062DA16 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		CF8FAF642EB4C3440062DA16 /* AddressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerView.swift; sourceTree = "<group>"; };
+		CF8FAF662EB4C3540062DA16 /* AddressPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerViewModel.swift; sourceTree = "<group>"; };
+		CF8FAF6F2EB4CD5A0062DA16 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		CF939ED52EB1EDA3007B982A /* CustomMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapView.swift; sourceTree = "<group>"; };
 		CF939ED72EB1EE5F007B982A /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		CFA635772E8CF535006A62E7 /* Inter-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.otf"; sourceTree = "<group>"; };
@@ -144,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF0644392EB21406003603CC /* IQKeyboardManagerSwift in Frameworks */,
+				CF84301F2EB49B4D00DFE02F /* CountryPicker in Frameworks */,
 				CF56598C2EB37A4500A4B3D7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				CF06445A2EB2295B003603CC /* Utility.swift */,
+				CF8430132EB4865B00DFE02F /* InternetConnection.swift */,
+				CF8FAF5A2EB4B5AA0062DA16 /* CountryPickerUI.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -203,9 +226,9 @@
 		CF1B11642E8CF73D0044E1B2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				CF8430152EB4868200DFE02F /* Objc */,
 				CF5659992EB3947700A4B3D7 /* Extension */,
 				CF56599A2EB394B400A4B3D7 /* Location Manager */,
-				CF56598D2EB37AA400A4B3D7 /* Services */,
 				CF5659922EB37B7F00A4B3D7 /* Https */,
 				CF141C2C2EB3347000EB00F8 /* App State */,
 				CF0644592EB22923003603CC /* Utilities */,
@@ -281,19 +304,12 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
-		CF56598D2EB37AA400A4B3D7 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				CF56598E2EB37AB900A4B3D7 /* ApiManager.swift */,
-				CF5659902EB37B0E00A4B3D7 /* ApiService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		CF5659922EB37B7F00A4B3D7 /* Https */ = {
 			isa = PBXGroup;
 			children = (
+				CF84300E2EB485B500DFE02F /* Api.swift */,
 				CF5659932EB37B8F00A4B3D7 /* Router.swift */,
+				CF8430102EB485BE00DFE02F /* Service.swift */,
 			);
 			path = Https;
 			sourceTree = "<group>";
@@ -319,6 +335,18 @@
 			path = "Location Manager";
 			sourceTree = "<group>";
 		};
+		CF8430152EB4868200DFE02F /* Objc */ = {
+			isa = PBXGroup;
+			children = (
+				CF8430162EB4868D00DFE02F /* MBProgressHUD.h */,
+				CF8430172EB4868D00DFE02F /* MBProgressHUD.m */,
+				CF8430182EB4868D00DFE02F /* Reachability.h */,
+				CF8430192EB4868D00DFE02F /* Reachability.m */,
+				CF84301C2EB4868F00DFE02F /* Glisexab-Bridging-Header.h */,
+			);
+			path = Objc;
+			sourceTree = "<group>";
+		};
 		CF89E5062E9905710026C76C /* Save Address */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +369,56 @@
 				CF8E51792E98E89B0018469A /* AddAddressView.swift */,
 			);
 			path = "Add Address";
+			sourceTree = "<group>";
+		};
+		CF8FAF5C2EB4BCDF0062DA16 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFFC86442E90F2380050CEBB /* SignupView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF8FAF5E2EB4BCF40062DA16 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF8FAF5F2EB4BD470062DA16 /* SignupViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		CF8FAF612EB4C30F0062DA16 /* Address Picker */ = {
+			isa = PBXGroup;
+			children = (
+				CF8FAF6E2EB4CD4D0062DA16 /* Model */,
+				CF8FAF632EB4C3210062DA16 /* View Model */,
+				CF8FAF622EB4C31B0062DA16 /* View */,
+			);
+			path = "Address Picker";
+			sourceTree = "<group>";
+		};
+		CF8FAF622EB4C31B0062DA16 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF8FAF642EB4C3440062DA16 /* AddressPickerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF8FAF632EB4C3210062DA16 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF8FAF662EB4C3540062DA16 /* AddressPickerViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		CF8FAF6E2EB4CD4D0062DA16 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF8FAF6F2EB4CD5A0062DA16 /* LocationData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CF939ED42EB1ED74007B982A /* Map Annotation */ = {
@@ -405,7 +483,8 @@
 		CFC40B2B2E911FEA00DAC1D3 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				CFFC86442E90F2380050CEBB /* SignupView.swift */,
+				CF8FAF5C2EB4BCDF0062DA16 /* View */,
+				CF8FAF5E2EB4BCF40062DA16 /* View Model */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -426,6 +505,7 @@
 				CFFC86432E90F2250050CEBB /* Login */,
 				CFC40B2B2E911FEA00DAC1D3 /* Signup */,
 				CFC40B2E2E9128C300DAC1D3 /* Forget Password */,
+				CF8FAF612EB4C30F0062DA16 /* Address Picker */,
 			);
 			path = Primary;
 			sourceTree = "<group>";
@@ -591,6 +671,7 @@
 			packageProductDependencies = (
 				CF0644382EB21406003603CC /* IQKeyboardManagerSwift */,
 				CF56598B2EB37A4500A4B3D7 /* Alamofire */,
+				CF84301E2EB49B4D00DFE02F /* CountryPicker */,
 			);
 			productName = Glisexab;
 			productReference = CFD0C91F2E8BE22300E7FC9B /* Glisexab.app */;
@@ -608,6 +689,7 @@
 				TargetAttributes = {
 					CFD0C91E2E8BE22300E7FC9B = {
 						CreatedOnToolsVersion = 26.0.1;
+						LastSwiftMigration = 2600;
 					};
 				};
 			};
@@ -623,6 +705,7 @@
 			packageReferences = (
 				CF0644372EB21406003603CC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				CF56598A2EB37A4500A4B3D7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CF84301D2EB49B4D00DFE02F /* XCRemoteSwiftPackageReference "CountryPicker" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CFD0C9202E8BE22300E7FC9B /* Products */;
@@ -669,19 +752,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF5659942EB37B8F00A4B3D7 /* Router.swift in Sources */,
+				CF8FAF652EB4C3440062DA16 /* AddressPickerView.swift in Sources */,
 				CF0644582EB21BCA003603CC /* AppDelegate.swift in Sources */,
 				CF8E51782E98E0250018469A /* EditProfileView.swift in Sources */,
 				CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */,
 				CF8DE8812EA26C3800F75D73 /* CustomButtonAction.swift in Sources */,
 				CFD22ED62EAF3DA2001E188A /* HistoryView.swift in Sources */,
 				CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */,
-				CF5659912EB37B0E00A4B3D7 /* ApiService.swift in Sources */,
 				CF5659892EB3789600A4B3D7 /* LoginResponse.swift in Sources */,
 				CF5659872EB3785800A4B3D7 /* LoginRequest.swift in Sources */,
 				CFADBFC02E9D2DFD00A3161C /* NavigationRouter.swift in Sources */,
+				CF8FAF5B2EB4B5AA0062DA16 /* CountryPickerUI.swift in Sources */,
 				CF8E517A2E98E89B0018469A /* AddAddressView.swift in Sources */,
 				CFD1F0042E94F41B00C792A7 /* SearchDriverView.swift in Sources */,
 				CFC40B2D2E91205400DAC1D3 /* ForgetPasswordView.swift in Sources */,
+				CF84300F2EB485B500DFE02F /* Api.swift in Sources */,
 				CF8E51752E98DEA20018469A /* BackButton.swift in Sources */,
 				CF61AFAC2E99314C0064965A /* CustomLogo.swift in Sources */,
 				CFFC86452E90F2380050CEBB /* SignupView.swift in Sources */,
@@ -690,9 +775,12 @@
 				CF06445B2EB2295B003603CC /* Utility.swift in Sources */,
 				CF5659962EB37C6200A4B3D7 /* LoginViewModel.swift in Sources */,
 				CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */,
+				CF8FAF702EB4CD5A0062DA16 /* LocationData.swift in Sources */,
 				CFC1AED92EB3523D001E57AE /* DataModel.swift in Sources */,
 				CFADBFC62E9D371900A3161C /* RootView.swift in Sources */,
+				CF8FAF672EB4C3540062DA16 /* AddressPickerViewModel.swift in Sources */,
 				CFD0C9332E8BE7EA00E7FC9B /* GlisexabApp.swift in Sources */,
+				CF8FAF602EB4BD470062DA16 /* SignupViewModel.swift in Sources */,
 				CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */,
 				CFC9C5F52E97D04D003F5BB9 /* SettingView.swift in Sources */,
 				CF0644362EB212DF003603CC /* KeyboardResponder.swift in Sources */,
@@ -706,8 +794,11 @@
 				CFD0CD242E8D44FB001A7FFD /* LoginView.swift in Sources */,
 				CF5659982EB37FBB00A4B3D7 /* EncodableExtension.swift in Sources */,
 				CF06445D2EB23E74003603CC /* DateModel.swift in Sources */,
-				CF56598F2EB37AB900A4B3D7 /* ApiManager.swift in Sources */,
+				CF8430142EB4865B00DFE02F /* InternetConnection.swift in Sources */,
+				CF84301A2EB4868D00DFE02F /* MBProgressHUD.m in Sources */,
+				CF84301B2EB4868D00DFE02F /* Reachability.m in Sources */,
 				CFC1AED52EB34F11001E57AE /* ChatView.swift in Sources */,
+				CF8430112EB485BE00DFE02F /* Service.swift in Sources */,
 				CFD1F0012E94DE0900C792A7 /* PopupBargainView.swift in Sources */,
 				CF1B11632E8CF7280044E1B2 /* UiExtension.swift in Sources */,
 			);
@@ -840,6 +931,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -864,6 +956,8 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Glisexab/Component/Objc/Glisexab-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -875,6 +969,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -899,6 +994,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Glisexab/Component/Objc/Glisexab-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -945,6 +1041,14 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		CF84301D2EB49B4D00DFE02F /* XCRemoteSwiftPackageReference "CountryPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mobven/CountryPicker/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -957,6 +1061,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF56598A2EB37A4500A4B3D7 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		CF84301E2EB49B4D00DFE02F /* CountryPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF84301D2EB49B4D00DFE02F /* XCRemoteSwiftPackageReference "CountryPicker" */;
+			productName = CountryPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

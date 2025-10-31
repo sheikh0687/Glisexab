@@ -9,6 +9,46 @@ import SwiftUI
 import MapKit
 internal import Combine
 
+enum LocationError: Error {
+    case permissionDenied
+    case permissionRestricted
+    case locationServicesDisabled
+    case locationFetchFailed
+    case unknownError
+    case custom(message: String)
+    
+    var isRecoverable: Bool {
+        switch self {
+        case .locationServicesDisabled,
+                .permissionDenied:
+            return true // User can go to Settings
+        case .permissionRestricted,
+                .locationFetchFailed,
+                .unknownError:
+            return false
+        case .custom:
+            return false
+        }
+    }
+    
+    var userMessage: String {
+        switch self {
+        case .permissionDenied:
+            return "Location access is denied. To continue, please enable it in Settings > Privacy & Security > Location Services, or tap HERE to go to Settings. You can also enter your location manually."
+        case .permissionRestricted:
+            return "Location access is restricted and cannot be changed. Please enter your location manually."
+        case .locationServicesDisabled:
+            return "Location services are turned off. Please enable it in Settings > Privacy & Security > Location Services, or tap HERE to go to Settings. You can also enter your location manually."
+        case .locationFetchFailed:
+            return "Failed to fetch location. Please tap the location button to retry or enter your location manually."
+        case .unknownError:
+            return "An unknown error occurred while getting your location. Please try again."
+        case .custom(let message):
+            return message
+        }
+    }
+}
+
 class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate, CLLocationManagerDelegate {
     // MARK: - Published Properties
     
@@ -26,6 +66,8 @@ class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchComplete
     @Published var didSetInitialLocation = false // Track one-time setup
     
     // MARK: - Internal Properties
+    
+    private var completion: ((Result<LocationData, LocationError>) -> Void)?
     
     private var completer = MKLocalSearchCompleter()
     private var cancellables = Set<AnyCancellable>()
@@ -168,4 +210,36 @@ class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchComplete
             }
         }
     }
+    
+    func getLocation(completion: @escaping (Result<LocationData, LocationError>) -> Void) {
+        self.completion = completion
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard CLLocationManager.locationServicesEnabled() else {
+                DispatchQueue.main.async {
+                    completion(.failure(.locationServicesDisabled))
+                }
+                return
+            }
+
+            let status = self.locationManager.authorizationStatus
+            
+            DispatchQueue.main.async {
+                switch status {
+                case .notDetermined:
+                    self.locationManager.requestWhenInUseAuthorization()
+                case .restricted:
+                    completion(.failure(.permissionRestricted))
+                case .denied:
+                    completion(.failure(.permissionDenied))
+                case .authorizedWhenInUse, .authorizedAlways:
+                    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    self.locationManager.requestLocation()
+                @unknown default:
+                    completion(.failure(.unknownError))
+                }
+            }
+        }
+    }
+
 }

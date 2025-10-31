@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CountryPicker
 
 struct LoginView: View {
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dissmiss
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var appState: AppState
@@ -16,9 +18,11 @@ struct LoginView: View {
     
     @State private var txtContactNumber: String = ""
     @State private var txtPassword: String = ""
+    @State private var mobileCode: String = ""
+    @State private var countryObj: Country?
+    @State private var showCountryPicker = false
     
     var body: some View {
-        
         ZStack {
             ScrollView {
                 VStack(spacing: 0) {
@@ -45,16 +49,26 @@ struct LoginView: View {
                                 )
                             
                             HStack {
-                                Image("Contact")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                                    .padding(.leading, 12)
+                                
+                                Button {
+                                    showCountryPicker = true
+                                } label: {
+                                    
+                                    if let countryObj = countryObj {
+                                        Text("\(countryObj.isoCode.getFlag())")
+                                            .font(.customfont(.medium, fontSize: 28))
+                                        
+                                        Text("+\(countryObj.phoneCode)")
+                                            .font(.customfont(.medium, fontSize: 16))
+                                            .foregroundColor(.black)
+                                    }
+                                }
                                 
                                 TextField("Enter Contact Number", text: $txtContactNumber)
                                     .font(.customfont(.light, fontSize: 14))
                                     .padding(.leading, 4)
                             }
+                            .padding()
                         }
                         
                         Text("Password")
@@ -107,24 +121,48 @@ struct LoginView: View {
                     .padding(.top, 15)
                     
                     Button {
-                        viewModel.txtMobileNum = txtContactNumber
-                        viewModel.txtPassword = txtPassword
-                        viewModel.createLogin()
-                        viewModel.cloSuccessRes = {
-                            router.push(to: .home)
-                            appState.isLoggedIn = true
+                        guard !txtContactNumber.isEmpty, !txtPassword.isEmpty else {
+                            viewModel.errorMessage = "Please fill all required fields."
+                            return
+                        }
+                        Task {
+                            viewModel.mobile = txtContactNumber
+                            viewModel.password = txtPassword
+                            viewModel.mobileCode = countryObj?.phoneCode ?? ""
+                            await viewModel.login()
+                            if viewModel.user != nil {
+                                router.push(to: .home)
+                                appState.isLoggedIn = true
+                            }
                         }
                     } label: {
-                        Text("Signin")
-                            .font(.customfont(.bold, fontSize: 16))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .background(Color.colorNeavyBlue)
-                            .cornerRadius(10)
+                        if viewModel.isLoading {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                        } else {
+                            Text("Signin")
+                                .font(.customfont(.bold, fontSize: 16))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .background(Color.colorNeavyBlue)
+                                .cornerRadius(10)
+                        }
                     }
+                    .disabled(viewModel.isLoading)
                     .padding(.horizontal, 24)
                     .padding(.top, 40)
+                    .alert (
+                        viewModel.errorMessage ?? "",
+                        isPresented: Binding (
+                            get: { viewModel.errorMessage != nil },
+                            set: { if !$0 { viewModel.errorMessage = nil }}
+                        ),
+                        actions: { Button("OK", role: .cancel) { viewModel.errorMessage = nil } }
+                    )
                     
                     HStack {
                         Text("Don’t have an Account?")
@@ -148,20 +186,24 @@ struct LoginView: View {
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    BackButton {
-                        router.popView()
-                    }
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    CustomLogo()
-                        .frame(width: 100, height: 120)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton {
+                    router.popView()
                 }
             }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                CustomLogo()
+                    .frame(width: 100, height: 120)
+            }
+        }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
+            self.countryObj = Country(phoneCode: "91", isoCode: "IN")
+        }
+        .sheet(isPresented: $showCountryPicker) {
+            CountryPickerUI(country: $countryObj)
         }
     }
 }
