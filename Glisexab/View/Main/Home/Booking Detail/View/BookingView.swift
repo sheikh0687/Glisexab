@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RideOption: Identifiable {
     let id = UUID()
@@ -52,6 +53,9 @@ struct BookingView: View {
     @EnvironmentObject private var router: NavigationRouter
     
     var data: BookingDetailData
+    
+    @StateObject var viewModel = BookingDetailViewModel()
+    @EnvironmentObject var appState: AppState
     
     //MARK: MAIN BODY
     var body: some View {
@@ -158,49 +162,65 @@ struct BookingView: View {
                     
                     //MARK: Vehicle for booking
                     
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Rides Available")
-                            .font(.customfont(.medium, fontSize: 14))
-                            .padding(.horizontal, 10)
-                        
-                        ForEach(arrayOfRides.indices, id: \.self) { indexx in
-                            HStack(spacing: 8) {
-                                Image(arrayOfRides[indexx].imageName)
-                                    .resizable()
-                                    .frame(width: 60, height: 36)
-                                    .cornerRadius(8)
-                                
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(arrayOfRides[indexx].title)
-                                        .font(.customfont(.medium, fontSize: 12))
-                                    Text(arrayOfRides[indexx].description)
-                                        .font(.customfont(.regular, fontSize: 10))
-                                        .foregroundColor(Color.gray)
-                                }
-                                
-                                Spacer()
-                                Text(arrayOfRides[indexx].price)
-                                    .font(.customfont(.medium, fontSize: 14))
-                            }
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 10)
-                            .background (
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(indexx == selectedVehcileIndex ? Color.colorLightBlue : Color(.systemGray6), lineWidth: 1)
-                                    .background(
-                                        indexx == selectedVehcileIndex ? Color(.systemGray6) : Color.white
-                                    )
-                            )
-                            .onTapGesture {
-                                selectedVehcileIndex = indexx
-                            }
-                            .animation(.easeInOut, value: selectedVehcileIndex)
-                        }
-                        .cornerRadius(15)
-                    } // VSTACK
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 10)
-                    .background(Color(.systemBackground))
+//                    VStack(alignment: .leading, spacing: 8) {
+//                        Text("Rides Available")
+//                            .font(.customfont(.medium, fontSize: 14))
+//                            .padding(.horizontal, 10)
+//                        
+//                        if viewModel.isLoading {
+//                            ProgressView("Loading vehicle...")
+//                                .frame(maxWidth: .infinity, alignment: .center)
+//                                .padding()
+//                        } else if viewModel.vehicleList.isEmpty {
+//                            Text("No rides available.")
+//                                .foregroundColor(.gray)
+//                                .frame(maxWidth: .infinity, alignment: .center)
+//                                .padding()
+//                        } else {
+//                            ForEach(Array(viewModel.vehicleList.enumerated()), id: \.offset) { indexx, vehicle in
+//                                HStack(spacing: 8) {
+//                                    
+//                                    WebImage(url: URL(string: vehicle.image ?? ""))
+//                                        .placeholder {
+//                                            Rectangle().fill(Color.gray.opacity(0.3))
+//                                        }
+//                                        .resizable()
+//                                        .indicator(.activity)
+//                                        .frame(width: 60, height: 36)
+//                                        .cornerRadius(8)
+//    
+//                                    VStack(alignment: .leading, spacing: 4) {
+//                                        Text(vehicle.vehicle ?? "Unknown Vehicle")
+//                                            .font(.customfont(.medium, fontSize: 12))
+//                                        Text(vehicle.no_of_passenger ?? "No passanger")
+//                                            .font(.customfont(.regular, fontSize: 10))
+//                                            .foregroundColor(Color.gray)
+//                                    }
+//                                    
+//                                    Spacer()
+//                                    Text(vehicle.per_km_price ?? "")
+//                                        .font(.customfont(.medium, fontSize: 14))
+//                                }
+//                                .padding(.vertical, 12)
+//                                .padding(.horizontal, 10)
+//                                .background (
+//                                    RoundedRectangle(cornerRadius: 15)
+//                                        .stroke(indexx == selectedVehcileIndex ? Color.colorLightBlue : Color(.systemGray6), lineWidth: 1)
+//                                        .background (
+//                                            indexx == selectedVehcileIndex ? Color(.systemGray6) : Color.white
+//                                        )
+//                                )
+//                                .onTapGesture {
+//                                    selectedVehcileIndex = indexx
+//                                }
+//                                .animation(.easeInOut, value: selectedVehcileIndex)
+//                            }
+//                            .cornerRadius(15)
+//                        }
+//                    } // VSTACK
+//                    .padding(.vertical, 10)
+//                    .padding(.horizontal, 10)
+//                    .background(Color(.systemBackground))
                     
                     Divider()
                     
@@ -290,7 +310,7 @@ struct BookingView: View {
                         } // BOTTOM VSTACK
                         .padding(.horizontal, 12)
                         .padding(.top, 12)
-//                        .padding(.bottom, 40)
+                        //                        .padding(.bottom, 40)
                     }
                     .padding(.top, 20)
                 }
@@ -321,6 +341,7 @@ struct BookingView: View {
         }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
+            viewModel.fetchVehicleList(appState: appState)
         }
     } // ZSTACK
 }

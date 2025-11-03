@@ -26,44 +26,86 @@ final class SignupViewModel: ObservableObject {
     private let locationManager = LocationSearchViewModel()
     @Published var locationError: LocationError?
     
-    @Published var address: String?
+    @Published var address: String = ""
     @Published var city: String?
     @Published var state: String?
     @Published var latitude: Double?
     @Published var longitude: Double?
     
-    func signUp() async {
+    @Published var customError: CustomError? = nil
+    
+    @Published var isCheck = false
+    
+    func webRegisterUser() {
+        
+        guard validateFields() else { return }
+        
         isLoading = true
         errorMessage = nil
         
-        do {
-            var paramDict: [String : Any] = [:]
-            paramDict["first_name"] = firstName
-            paramDict["last_name"] = lastName
-            paramDict["mobile"] = mobile
-            paramDict["mobile_witth_country_code"] = "\(mobileCode)\(mobile)"
-            paramDict["email"] = email
-            paramDict["address"] = address
-            paramDict["register_id"] = ""
-            paramDict["ios_register_id"] = ""
-            paramDict["type"] = "USER"
-            paramDict["lat"] = latitude
-            paramDict["lon"] = longitude
+        var paramDict: [String : Any] = [:]
+        paramDict["first_name"] = firstName
+        paramDict["last_name"] = lastName
+        paramDict["mobile"] = mobile
+        paramDict["mobile_witth_country_code"] = "\(mobileCode)\(mobile)"
+        paramDict["email"] = email
+        paramDict["address"] = address
+        paramDict["register_id"] = ""
+        paramDict["ios_register_id"] = ""
+        paramDict["type"] = "USER"
+        paramDict["lat"] = latitude
+        paramDict["lon"] = longitude
 
-            print(paramDict)
+        print(paramDict)
+
+        Api.shared.requestToSignUp(params: paramDict) { [weak self] result in
+            guard let self else { return }
             
-            let result = try await Api.shared.signUp(params: paramDict)
-            self.newUser = result
-            print("✅ Login Success:", result)
-        } catch let apiError as ApiError {
-            errorMessage = apiError.localizedDescription
-            print("❌ API Error:", apiError.localizedDescription)
-        } catch {
-            errorMessage = error.localizedDescription
-            print("❌ API Error:", error.localizedDescription)
+            DispatchQueue.main.async {
+                self.isLoading = false
+                
+                switch result {
+                case .success(let res):
+                    self.newUser = res
+                    print("✅ Registration Success:", res)
+                case .failure(let error):
+                    self.customError = .customError(message: error.localizedDescription)
+                    print("❌ API Error:", error.localizedDescription)
+                }
+            }
         }
-        
-        isLoading = false
+    }
+    
+    func validateFields() -> Bool {
+        if firstName.isEmpty {
+            customError = .customError(message: "Please enter your first name.")
+            return false
+        } else if lastName.isEmpty {
+            customError = .customError(message: "Please enter your last name.")
+            return false
+        } else if email.isEmpty {
+            customError = .customError(message: "Please enter your valid email address.")
+            return false
+        } else if mobile.isEmpty {
+            customError = .customError(message: "Please enter your mobile number.")
+            return false
+        } else if address.isEmpty {
+            customError = .customError(message: "Please select your address.")
+            return false
+        } else if password.isEmpty {
+            customError = .customError(message: "Please enter the password.")
+            return false
+        } else if confirmPassword.isEmpty {
+            customError = .customError(message: "Please confirm the password.")
+            return false
+        } else if password != confirmPassword {
+            customError = .customError(message: "Password mismatch. Please enter the same password.")
+            return false
+        } else if isCheck == false {
+            customError = .customError(message: "Please read the terms and conditions.")
+            return false
+        }
+        return true
     }
     
     func requestForLocationServices() {

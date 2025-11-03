@@ -10,8 +10,10 @@ internal import Combine
 
 enum AppStorageKey: String {
     case isLoggedIn
+    case useriD
 }
 
 final class AppState: ObservableObject {
     @AppStorage(AppStorageKey.isLoggedIn.rawValue) var isLoggedIn: Bool = false
+    @AppStorage(AppStorageKey.useriD.rawValue) var useriD: String = ""
 }

@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1948542B-93A7-4340-B63C-16DBE3024F78"
+            uuid = "3D9F6B72-36F3-468A-92BC-F19B4D581F55"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Glisexab/View/Primary/Signup/View Model/SignupViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "signUp()"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "webRegisterUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

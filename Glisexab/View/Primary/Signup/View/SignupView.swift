@@ -11,20 +11,13 @@ import CountryPicker
 struct SignupView: View {
     
     // MARK: PROPERTY
-    @State private var txtFirstName: String = ""
-    @State private var txtLastName: String  = ""
-    @State private var txtEmail: String = ""
-    @State private var txtContactNumber: String = ""
-    @State private var txtAddress: String = ""
-    @State private var txtPassword: String = ""
-    @State private var txtConfirmPassword: String = ""
-    
-    @State private var isCheck = false
     @State private var isPaswordVisible = false
     @State private var isConfirmPasswordVisible = false
     @State private var countryObj: Country?
+    
     @State private var showCountryPicker = false
     @State private var showAddressPicker = false
+    @State private var showErrorBanner = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dissmiss
@@ -38,7 +31,6 @@ struct SignupView: View {
         ZStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    
                     Text("Continue to Signup")
                         .font(.customfont(.medium, fontSize: 18))
                         .padding(.leading)
@@ -69,7 +61,7 @@ struct SignupView: View {
                                     .frame(width: 24, height: 24)
                                     .padding(.leading, 12)
                                 
-                                TextField("Enter First Name", text: $txtFirstName)
+                                TextField("Enter First Name", text: $viewModel.firstName)
                                     .font(.customfont(.light, fontSize: 14))
                                     .padding(.leading, 4)
                             }
@@ -96,7 +88,7 @@ struct SignupView: View {
                                     .frame(width: 24, height: 24)
                                     .padding(.leading, 12)
                                 
-                                TextField("Enter Last Name", text: $txtLastName)
+                                TextField("Enter Last Name", text: $viewModel.lastName)
                                     .font(.customfont(.light, fontSize: 14))
                                     .padding(.leading, 4)
                             }
@@ -123,7 +115,7 @@ struct SignupView: View {
                                     .frame(width: 24, height: 24)
                                     .padding(.leading, 12)
                                 
-                                TextField("Enter Email Address", text: $txtEmail)
+                                TextField("Enter Email Address", text: $viewModel.email)
                                     .font(.customfont(.light, fontSize: 14))
                                     .padding(.leading, 4)
                             }
@@ -159,11 +151,10 @@ struct SignupView: View {
                                     }
                                 }
                                 
-                                TextField("Enter Contact Number", text: $txtContactNumber)
+                                TextField("Enter Contact Number", text: $viewModel.mobile)
                                     .font(.customfont(.light, fontSize: 14))
                                     .padding(.leading, 4)
                             }
-                            
                         }
                         
                         Text("Location")
@@ -190,7 +181,7 @@ struct SignupView: View {
                                 Button {
                                     showAddressPicker = true
                                 } label: {
-                                    Text(viewModel.address ?? "Select Address")
+                                    Text(viewModel.address)
                                         .font(.customfont(.light, fontSize: 14))
                                         .foregroundColor(.black)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -221,11 +212,11 @@ struct SignupView: View {
                                     .padding(.leading, 12)
                                 
                                 if isPaswordVisible {
-                                    TextField("Enter Password", text: $txtPassword)
+                                    TextField("Enter Password", text: $viewModel.password)
                                         .font(.customfont(.light, fontSize: 14))
                                         .padding(.leading, 4)
                                 } else {
-                                    SecureField("Enter Password", text: $txtPassword)
+                                    SecureField("Enter Password", text: $viewModel.password)
                                         .font(.customfont(.light, fontSize: 14))
                                         .padding(.leading, 4)
                                 }
@@ -266,11 +257,11 @@ struct SignupView: View {
                                     .padding(.leading, 12)
                                 
                                 if isConfirmPasswordVisible {
-                                    TextField("Confirm Password", text: $txtConfirmPassword)
+                                    TextField("Confirm Password", text: $viewModel.confirmPassword)
                                         .font(.customfont(.light, fontSize: 14))
                                         .padding(.leading, 4)
                                 } else {
-                                    SecureField("Confirm Password", text: $txtConfirmPassword)
+                                    SecureField("Confirm Password", text: $viewModel.confirmPassword)
                                         .font(.customfont(.light, fontSize: 14))
                                         .padding(.leading, 4)
                                 }
@@ -291,9 +282,9 @@ struct SignupView: View {
                         
                         HStack() {
                             Button {
-                                isCheck.toggle()
+                                viewModel.isCheck.toggle()
                             } label: {
-                                Image(isCheck ? "checked" : "uncheck")
+                                Image(viewModel.isCheck ? "checked" : "uncheck")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
@@ -319,20 +310,9 @@ struct SignupView: View {
                     .padding(.top, 24)
                     
                     Button {
-                        Task {
-                            viewModel.firstName = txtFirstName
-                            viewModel.lastName = txtLastName
-                            viewModel.email = txtEmail
-                            viewModel.password = txtPassword
-                            viewModel.confirmPassword = txtConfirmPassword
-                            viewModel.mobile = txtContactNumber
-                            viewModel.mobileCode = countryObj?.phoneCode ?? ""
-                            await viewModel.signUp()
-                            if viewModel.newUser != nil {
-                                router.push(to: .home)
-                                appState.isLoggedIn = true
-                            }
-                        }
+                        viewModel.mobileCode = countryObj?.phoneCode ?? ""
+                        viewModel.webRegisterUser()
+                        
                     } label: {
                         if viewModel.isLoading {
                             ProgressView()
@@ -352,6 +332,14 @@ struct SignupView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 40)
+                    .onChange(of: viewModel.newUser != nil) { isUserRegister in
+                        if isUserRegister {
+                            AlertManager.shared.showAlert(title: "Glisexab", message: "Your account has been created successfully", primaryButtonText: "OK", primaryAction: {
+                                router.push(to: .home)
+                                appState.isLoggedIn = true
+                            })
+                        }
+                    }
                     
                     HStack {
                         Text("Have an Account?")
@@ -371,6 +359,18 @@ struct SignupView: View {
                 .background(Color.white)
                 .navigationBarBackButtonHidden(true)
             }
+            
+            if showErrorBanner, let error = viewModel.customError {
+                CustomErrorBanner(message: error.localizedDescription) {
+                    withAnimation {
+                        showErrorBanner = false
+                        viewModel.customError = nil
+                    }
+                }
+                .animation(.easeInOut, value: showErrorBanner)
+                .padding(.top, 8)
+            }
+            
         } // ZSTACk
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -379,12 +379,10 @@ struct SignupView: View {
                     router.popView()
                 }
             }
-            
             ToolbarItem(placement: .topBarTrailing) {
                 CustomLogo()
                     .frame(width: 100, height: 120)
             }
-            
         }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
@@ -398,6 +396,11 @@ struct SignupView: View {
                 addressView()
             }
             .interactiveDismissDisabled()
+        }
+        .onChange(of: viewModel.customError) { newError in
+            withAnimation {
+                showErrorBanner = newError != nil
+            }
         }
     }
     

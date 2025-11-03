@@ -225,5 +225,4 @@ struct Res_LoginResponse : Codable {
         rating_review_count = try values.decodeIfPresent(String.self, forKey: .rating_review_count)
         noti_count = try values.decodeIfPresent(String.self, forKey: .noti_count)
     }
-
 }

@@ -13,17 +13,24 @@ enum Router: String {
     static let BASE_IMAGE_URL = "https://techimmense.in/glisexab/uploads/images/"
     
     case login
-    case forgetPassword
-    case signUp
+    case forgot_password
+    case signup
+    
+    case get_profile
+    case vehicle_list
     
     public func url() -> String {
         switch self {
         case .login:
             return Router.oAuthRoute(path: "login")
-        case .signUp:
+        case .signup:
             return Router.oAuthRoute(path: "signup")
-        case .forgetPassword:
-            return Router.oAuthRoute(path: "forget_passowrd")
+        case .forgot_password:
+            return Router.oAuthRoute(path: "forgot_password")
+        case .get_profile:
+            return Router.oAuthRoute(path: "get_profile")
+        case .vehicle_list:
+            return Router.oAuthRoute(path: "vehicle_list")
         }
     }
     

@@ -18,4 +18,6 @@ class Utility {
         let region = MKCoordinateRegion(center: kAppDelegate.coordinate2.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002))
         mapView.setRegion(region, animated: true)
     }
+    
+    
 }
