@@ -31,6 +31,7 @@ final class LoginViewModel: ObservableObject {
     }
     
     func webLoginResponse(appState: AppState) {
+        
         guard validateFields() else { return }
         
         isLoading = true
@@ -62,6 +63,7 @@ final class LoginViewModel: ObservableObject {
                     if let useriD = userResponse.id  {
                         appState.useriD = useriD
                         appState.isLoggedIn = true
+                        appState.cardiD = userResponse.cust_id ?? ""
                     }
                     
                 case .failure(let error):

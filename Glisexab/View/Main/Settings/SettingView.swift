@@ -12,6 +12,8 @@ struct SettingView: View {
     @EnvironmentObject private var router: NavigationRouter
     @EnvironmentObject private var appState: AppState
     
+    @StateObject var viewModel = ProfileViewModel()
+    
     var body: some View {
         ZStack {
             VStack {
@@ -19,16 +21,24 @@ struct SettingView: View {
                     VStack(spacing: 20) {
                         VStack {
                             HStack(spacing: 20) {
-                                Image("leslie")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .clipShape(Circle())
+                                if let uiImage = viewModel.selectedUIImage {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 120, height: 120)
+                                        .clipShape(Circle())
+                                } else {
+                                    Image("leslie")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                        .clipShape(Circle())
+                                }
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("Leslie Alexander")
+                                    Text("\(viewModel.firstName) \(viewModel.lastName)")
                                         .font(.customfont(.bold, fontSize: 16))
                                     Button {
-                                        print("Navigate to profile view")
+                                        router.push(to: .editProfile)
                                     } label: {
                                         Text("View Profile")
                                             .font(.customfont(.regular, fontSize: 16))
@@ -57,7 +67,7 @@ struct SettingView: View {
                                     print("Navigate")
                                 })
                                 optionRow(image: "password24", text: "Change Password", action: {
-                                    print("Navigate")
+                                    router.push(to: .changePassword)
                                 })
                                 optionRow(image: "privacy24", text: "Privacy Policy", action: {
                                     print("Navigate")
@@ -99,6 +109,7 @@ struct SettingView: View {
         }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
+            viewModel.fetchUserProfile(appState: appState)
         }
     }
     
@@ -127,8 +138,6 @@ struct SettingView: View {
             )
         }
         .buttonStyle(PlainButtonStyle())
-//        VStack(spacing: 0) {
-//        }
     }
 }
 

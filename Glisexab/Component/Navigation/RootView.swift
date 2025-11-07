@@ -36,4 +36,6 @@ struct RootView: View {
 
 #Preview {
     RootView()
+        .environmentObject(NavigationRouter())
+        .environmentObject(AppState())
 }

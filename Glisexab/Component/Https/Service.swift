@@ -105,12 +105,36 @@ final class Service {
     }
     
     // MARK: - Upload Single Media
-    func uploadSingleMedia(
+//    func uploadSingleMedia (
+//        url: String,
+//        params: [String: String]? = nil,
+//        images: [String: UIImage]? = nil,
+//        videos: [String: Data]? = nil,
+//        completion: @escaping (Result<Data, ApiError>) -> Void
+//    ) {
+//        guard checkConnection() else {
+//            completion(.failure(.noInternet))
+//            return
+//        }
+//        
+//        session.upload(multipartFormData: { multipart in
+//            self.appendParameters(params, to: multipart)
+//            self.appendImages(images, to: multipart)
+//            self.appendVideos(videos, to: multipart)
+//        }, to: url)
+//        .validate()
+//        .responseData { response in
+//            self.handleUploadResponse(response, completion: completion)
+//        }
+//    }
+    
+    func uploadSingleMedia<T: Decodable>(
         url: String,
         params: [String: String]? = nil,
         images: [String: UIImage]? = nil,
         videos: [String: Data]? = nil,
-        completion: @escaping (Result<Data, ApiError>) -> Void
+        responseType: T.Type,
+        completion: @escaping (Result<T, ApiError>) -> Void
     ) {
         guard checkConnection() else {
             completion(.failure(.noInternet))
@@ -124,7 +148,19 @@ final class Service {
         }, to: url)
         .validate()
         .responseData { response in
-            self.handleUploadResponse(response, completion: completion)
+            switch response.result {
+            case .success(let data):
+                do {
+                    let decoded = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(decoded))
+                } catch {
+                    print("❌ Decoding failed: \(error.localizedDescription)")
+                    completion(.failure(.decodingError(error.localizedDescription)))
+                }
+            case .failure(let error):
+                print("❌ Upload Failed: \(error.localizedDescription)")
+                completion(.failure(.serverError(error.localizedDescription)))
+            }
         }
     }
     

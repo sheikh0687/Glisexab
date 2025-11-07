@@ -113,7 +113,6 @@ final class SignupViewModel: ObservableObject {
             switch result {
             case .success(let location):
                 self.locationError = nil
-//                Console.log("Got location: \(location)")
                 self.address = location.address ?? ""
                 self.city = location.city ?? ""
                 self.state = location.state ?? ""
@@ -125,5 +124,4 @@ final class SignupViewModel: ObservableObject {
             }
         }
     }
-
 }

@@ -25,6 +25,7 @@ enum AppNavigationView: Hashable {
     case addAddress
     case saveAddress
     case chat
+    case changePassword
     
     @ViewBuilder
     var view: some View {
@@ -61,6 +62,8 @@ enum AppNavigationView: Hashable {
             HistoryView()
         case .chat:
             ChatView()
+        case .changePassword:
+            ChangePasswordView()
         }
     }
 }

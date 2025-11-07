@@ -15,6 +15,7 @@ struct ForgetPasswordView: View {
     @State var isLoading: Bool = false
     @State var customError: CustomError? = nil
     @State var showErrorBanner = false
+    @State var showSuccessBanner = false
     
     @State var isPasswordReset: Bool = false
     
@@ -92,16 +93,16 @@ struct ForgetPasswordView: View {
             .background(Color.white)
             .navigationBarBackButtonHidden(true)
             
-            //            if showErrorBanner, let error = customError {
-            //                CustomErrorBanner(message: error.localizedDescription) {
-            //                    withAnimation {
-            //                        showErrorBanner = false
-            //                        customError = nil
-            //                    }
-            //                }
-            //                .animation(.easeInOut, value: showErrorBanner)
-            //                .padding(.top, 8)
-            //            }
+            if showErrorBanner, let error = customError {
+                CustomErrorBanner(message: error.localizedDescription) {
+                    withAnimation {
+                        showErrorBanner = false
+                        customError = nil
+                    }
+                }
+                .animation(.easeInOut, value: showErrorBanner)
+                .padding(.top, 8)
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -126,24 +127,15 @@ struct ForgetPasswordView: View {
         }
         .onChange(of: isPasswordReset) { isSuccess in
             if isSuccess {
-                AlertManager.shared.showAlert(title: "Glisexab", message: "New password has been sent to your email address.", primaryButtonText: "OK", primaryAction: {
-                    router.popView()
-                })
-            } else {
-                print("False")
+                showSuccessBanner = true
             }
         }
-        .safeAreaInset(edge: .bottom) {
-            if showErrorBanner, let error = customError {
-                CustomErrorBanner(message: error.localizedDescription) {
-                    withAnimation {
-                        showErrorBanner = false
-                        customError = nil
-                    }
-                }
-                .animation(.easeInOut, value: showErrorBanner)
-                .padding(.top, 8)
-            }
+        .alert(isPresented: $showSuccessBanner) {
+            Alert(
+                title: Text(Constant.AppName),
+                message: Text("Your new password has been sent to your mail."), dismissButton: .default(Text("ok")) {
+                    router.popView()
+                })
         }
     }
 }

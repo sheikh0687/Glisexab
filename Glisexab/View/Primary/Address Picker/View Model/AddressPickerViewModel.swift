@@ -51,7 +51,7 @@ class AddressSearchViewModel: NSObject, ObservableObject, MKLocalSearchCompleter
                 let city = placemark.locality ?? placemark.subAdministrativeArea
                 let coordinate = placemark.coordinate
                 
-                let objLocationData = LocationData(address: completion.title,
+                let objLocationData = LocationData(address: completion.subtitle,
                                                    city: city,
                                                    state: state,
                                                    latitude: coordinate.latitude,

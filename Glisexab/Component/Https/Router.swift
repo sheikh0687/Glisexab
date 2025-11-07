@@ -18,6 +18,16 @@ enum Router: String {
     
     case get_profile
     case vehicle_list
+    case save_card_list
+    case get_user_address
+    
+    case user_update_profile
+    case change_password
+    case add_user_address
+    
+    case get_conversation_detail
+    
+    case delete_user_address
     
     public func url() -> String {
         switch self {
@@ -31,6 +41,20 @@ enum Router: String {
             return Router.oAuthRoute(path: "get_profile")
         case .vehicle_list:
             return Router.oAuthRoute(path: "vehicle_list")
+        case .save_card_list:
+            return Router.oAuthRoute(path: "save_card_list")
+        case .user_update_profile:
+            return Router.oAuthRoute(path: "user_update_profile")
+        case .change_password:
+            return Router.oAuthRoute(path: "change_password")
+        case .get_user_address:
+            return Router.oAuthRoute(path: "get_user_address")
+        case .add_user_address:
+            return Router.oAuthRoute(path: "add_user_address")
+        case .delete_user_address:
+            return Router.oAuthRoute(path: "delete_user_address")
+        case .get_conversation_detail:
+            return Router.oAuthRoute(path: "get_conversation_detail")
         }
     }
     

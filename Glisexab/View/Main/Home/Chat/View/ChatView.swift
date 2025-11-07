@@ -40,7 +40,6 @@ struct ChatView: View {
                 }
             }
             .background(Color.white.edgesIgnoringSafeArea(.all))
-            
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)

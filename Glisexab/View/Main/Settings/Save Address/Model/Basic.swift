@@ -1,13 +1,13 @@
 //
-//  ForgetPassword.swift
+//  Basic.swift
 //  Glisexab
 //
-//  Created by Techimmense Software Solutions on 01/11/25.
+//  Created by Techimmense Software Solutions on 06/11/25.
 //
 
 import Foundation
 
-struct Api_ForgetPassword : Codable {
+struct Api_Basic : Codable {
     let result : String?
     let message : String?
     let status : String?

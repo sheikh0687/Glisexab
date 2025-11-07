@@ -312,7 +312,6 @@ struct SignupView: View {
                     Button {
                         viewModel.mobileCode = countryObj?.phoneCode ?? ""
                         viewModel.webRegisterUser()
-                        
                     } label: {
                         if viewModel.isLoading {
                             ProgressView()
