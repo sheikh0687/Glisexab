@@ -39,13 +39,13 @@ struct AddAddressView: View {
                             } else {
                                 Text("Save")
                                     .font(.customfont(.bold, fontSize: 16))
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.colorNeavyBlue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
                             }
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.colorNeavyBlue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
                     }
                     .padding(.vertical, 10)
                     .padding()
@@ -165,18 +165,12 @@ extension AddAddressView: Address {
             viewModel.state = result.state ?? ""
             viewModel.latitude = result.latitude ?? 0.0
             viewModel.longitude = result.longitude ?? 0.0
-            print(viewModel.address)
-            print(viewModel.latitude ?? 0.0)
-            print(viewModel.longitude ?? 0.0)
-            print(viewModel.city ?? "")
-            print(viewModel.state ?? "")
         case .failure(let error):
             //            $viewModel.error = .customError(message: error.localizedDescription)
             print(error.localizedDescription)
         }
     }
 }
-
 
 #Preview {
     AddAddressView()

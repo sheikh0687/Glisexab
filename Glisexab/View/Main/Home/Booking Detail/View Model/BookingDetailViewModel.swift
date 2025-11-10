@@ -19,9 +19,14 @@ class BookingDetailViewModel: ObservableObject {
     @Published var customError: CustomError? = nil
     @Published var selectedVehcileIndex: String? = nil
     @Published var selectedCardId: String? = nil
-        
-    func fetchVehicleList(appState: AppState)
-    {
+    
+    @Published var data: BookingDetailData?
+    
+    init(data: BookingDetailData? = nil) {
+        self.data = data
+    }
+    
+    func fetchVehicleList(appState: AppState) {
         guard !appState.useriD.isEmpty else {
             print("⚠️ No user ID found in AppState.")
             return
@@ -55,7 +60,7 @@ class BookingDetailViewModel: ObservableObject {
             print("⚠️ No user ID found in AppState.")
             return
         }
-
+        
         isLoading = true
         customError = nil
         
@@ -80,5 +85,9 @@ class BookingDetailViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func requestAddNearbyReq(appState: AppState) {
+        
     }
 }

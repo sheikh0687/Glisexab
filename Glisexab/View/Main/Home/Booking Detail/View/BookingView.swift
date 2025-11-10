@@ -22,8 +22,6 @@ struct BookingView: View {
     @EnvironmentObject private var router: NavigationRouter
     @EnvironmentObject var appState: AppState
     
-    var data: BookingDetailData
-    
     @StateObject var viewModel = BookingDetailViewModel()
     
     //MARK: MAIN BODY
@@ -54,14 +52,14 @@ struct BookingView: View {
                                 Text("Pickup Address")
                                     .font(.customfont(.regular, fontSize: 13))
                                     .foregroundColor(.gray)
-                                Text(data.pickup.address)
+                                Text(viewModel.data?.pickup.address ?? "")
                                     .font(.customfont(.medium, fontSize: 14))
                             }
                             VStack(alignment: .leading, spacing: 0) {
                                 Text("Dropoff Address")
                                     .font(.customfont(.regular, fontSize: 13))
                                     .foregroundColor(.gray)
-                                Text(data.dropoff.address)
+                                Text(viewModel.data?.dropoff.address ?? "")
                                     .font(.customfont(.medium, fontSize: 14))
                             }
                         }
@@ -76,7 +74,6 @@ struct BookingView: View {
                     )
                     .padding(12)
                     .padding(.top, 20)
-                    
                     
                     //MARK: Booking for other
                     HStack(spacing: 2) {
@@ -130,7 +127,6 @@ struct BookingView: View {
                     }
                     
                     //MARK: Vehicle for booking
-                    
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Rides Available")
                             .font(.customfont(.medium, fontSize: 14))
@@ -156,7 +152,6 @@ struct BookingView: View {
                                     }
                             }
                             .animation(.easeInOut, value: viewModel.selectedVehcileIndex)
-                            
                         }
                     } // VSTACK
                     .padding(.vertical, 10)
@@ -166,7 +161,6 @@ struct BookingView: View {
                     Divider()
                     
                     //MARK: Card Payment
-                    
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Text("Select Payment Method")
@@ -186,7 +180,6 @@ struct BookingView: View {
                         .padding(.horizontal, 10)
                         
                         VStack(spacing: 16) {
-                            
                             if viewModel.isLoading {
                                 ProgressView("Loading Cards...")
                                     .frame(maxWidth: .infinity, alignment: .center)
@@ -282,10 +275,7 @@ struct DottedLine: Shape {
 }
 
 #Preview {
-    BookingView(data: BookingDetailData(
-        pickup: LocationDetail(address: "123 Main St", latitude: 12.34, longitude: 56.78),
-        dropoff: LocationDetail(address: "789 Park Ave", latitude: 98.76, longitude: 54.32)
-    ))
+    BookingView()
     .environmentObject(NavigationRouter())
     .environmentObject(AppState())
 }

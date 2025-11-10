@@ -34,6 +34,7 @@
 		CF5BD41C2E954A3E00DF7AD5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */; };
 		CF61AFAC2E99314C0064965A /* CustomLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61AFAB2E99314C0064965A /* CustomLogo.swift */; };
 		CF66AE852E93C04900C83DD1 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66AE842E93C04900C83DD1 /* BookingView.swift */; };
+		CF6C012F2EC21FFF00942E60 /* AddNewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C012E2EC21FFF00942E60 /* AddNewRequest.swift */; };
 		CF84300F2EB485B500DFE02F /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF84300E2EB485B500DFE02F /* Api.swift */; };
 		CF8430112EB485BE00DFE02F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8430102EB485BE00DFE02F /* Service.swift */; };
 		CF8430142EB4865B00DFE02F /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8430132EB4865B00DFE02F /* InternetConnection.swift */; };
@@ -127,6 +128,7 @@
 		CF5BD41B2E954A3E00DF7AD5 /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
 		CF61AFAB2E99314C0064965A /* CustomLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogo.swift; sourceTree = "<group>"; };
 		CF66AE842E93C04900C83DD1 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		CF6C012E2EC21FFF00942E60 /* AddNewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRequest.swift; sourceTree = "<group>"; };
 		CF84300E2EB485B500DFE02F /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		CF8430102EB485BE00DFE02F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		CF8430132EB4865B00DFE02F /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			children = (
 				CF4D79FD2EB8C15E008B4653 /* VehicleList.swift */,
 				CFD149D32EB9D9D900CBC397 /* SaveCard.swift */,
+				CF6C012E2EC21FFF00942E60 /* AddNewRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				CF8DE8812EA26C3800F75D73 /* CustomButtonAction.swift in Sources */,
 				CF1D746F2EBC7F80007A71D7 /* SaveAddressRow.swift in Sources */,
 				CFD149D42EB9D9D900CBC397 /* SaveCard.swift in Sources */,
+				CF6C012F2EC21FFF00942E60 /* AddNewRequest.swift in Sources */,
 				CFD22ED62EAF3DA2001E188A /* HistoryView.swift in Sources */,
 				CF5389242E9668EB000F9B64 /* DriverDetailView.swift in Sources */,
 				CF5659892EB3789600A4B3D7 /* LoginResponse.swift in Sources */,

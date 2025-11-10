@@ -43,7 +43,7 @@ enum AppNavigationView: Hashable {
         case .settings:
             SettingView()
         case .bookingDetails(let data):
-            BookingView(data: data)
+            BookingView(viewModel: BookingDetailViewModel(data: data))
         case .scheduleBooking:
             ScheduleBookingView()
         case .trackDriver:

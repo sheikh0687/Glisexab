@@ -156,7 +156,7 @@ final class Api {
     
     func requestToChangePassword(params: [String: Any], completion: @escaping (Result<Api_Basic, ApiError>) -> Void) {
         Service.shared.request (
-            url: Router.forgot_password.url(),
+            url: Router.change_password.url(),
             method: .get,
             params: params,
             responseType: Api_Basic.self
@@ -240,6 +240,26 @@ final class Api {
             method: .get,
             params: params,
             responseType: Api_InfoAddress.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                if response.status == "1", let data = response.result {
+                    completion(.success(data))
+                } else {
+                    completion(.failure(.serverError(response.message ?? "Forget password failed")))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func requestToAddNewRequest(params: [String: Any], completion: @escaping (Result<Res_AddNewRequest, ApiError>) -> Void) {
+        Service.shared.request (
+            url: Router.get_user_address.url(),
+            method: .get,
+            params: params,
+            responseType: Api_AddNewRequest.self
         ) { result in
             switch result {
             case .success(let response):
