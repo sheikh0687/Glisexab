@@ -11,12 +11,6 @@ import SDWebImageSwiftUI
 struct BookingView: View {
     
     //MARK: PROPERTIES
-    @State private var txtSomeOther: String = ""
-    @State private var txtContactNumber: String = ""
-    
-    @State private var isBookingForOther: Bool = false
-        
-    @State private var selectedCardIndex = 0
     @State private var showingPopup = false
     
     @EnvironmentObject private var router: NavigationRouter
@@ -89,9 +83,9 @@ struct BookingView: View {
                         
                         Spacer()
                         Button {
-                            isBookingForOther.toggle()
+                            viewModel.isBookingForOther.toggle()
                         } label: {
-                            Image(isBookingForOther ? "checked" : "uncheck")
+                            Image(viewModel.isBookingForOther ? "checked" : "uncheck")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
@@ -101,11 +95,11 @@ struct BookingView: View {
                     
                     Divider()
                     
-                    if isBookingForOther {
+                    if viewModel.isBookingForOther {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Someone Name")
                                 .font(.customfont(.regular, fontSize: 12))
-                            TextField("Enter here..", text: $txtSomeOther)
+                            TextField("Enter here..", text: $viewModel.otherName)
                                 .padding()
                                 .font(.customfont(.light, fontSize: 12))
                                 .frame(height: 45)
@@ -114,7 +108,7 @@ struct BookingView: View {
                             
                             Text("Contact Number")
                                 .font(.customfont(.regular, fontSize: 12))
-                            TextField("Enter here..", text: $txtSomeOther)
+                            TextField("Enter here..", text: $viewModel.otherMobile)
                                 .padding()
                                 .font(.customfont(.light, fontSize: 12))
                                 .frame(height: 45)
