@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 enum AppNavigationView: Hashable {
     
@@ -15,7 +16,7 @@ enum AppNavigationView: Hashable {
     case forgetPassword
     case home
     case bookingDetails(BookingDetailData)
-    case scheduleBooking
+    case scheduleBooking(ScheduleBookingViewModel)
     case trackDriver
     case rideDetails
     case driverDetails
@@ -26,6 +27,11 @@ enum AppNavigationView: Hashable {
     case saveAddress
     case chat
     case changePassword
+    case searchDriver(LocationSearchViewModel)
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self)
+    }
     
     @ViewBuilder
     var view: some View {
@@ -44,8 +50,8 @@ enum AppNavigationView: Hashable {
             SettingView()
         case .bookingDetails(let data):
             BookingView(viewModel: BookingDetailViewModel(data: data))
-        case .scheduleBooking:
-            ScheduleBookingView()
+        case .scheduleBooking(let viewModel):
+            ScheduleBookingView(viewModel: viewModel)
         case .trackDriver:
             TrackingView()
         case .rideDetails:
@@ -64,6 +70,8 @@ enum AppNavigationView: Hashable {
             ChatView()
         case .changePassword:
             ChangePasswordView()
+        case .searchDriver(let viewModel):
+            SearchDriverView(viewModel: viewModel)
         }
     }
 }

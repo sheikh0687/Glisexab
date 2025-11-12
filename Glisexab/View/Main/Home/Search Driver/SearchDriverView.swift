@@ -10,19 +10,13 @@ import MapKit
 
 struct SearchDriverView: View {
     
-    @StateObject private var locationManager = LocationSearchViewModel()
+    @EnvironmentObject private var router: NavigationRouter
+    @ObservedObject var viewModel: LocationSearchViewModel
+        
     @State private var progress: CGFloat = 0.45
 
     var body: some View {
         ZStack(alignment: .top) {
-            Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
-                .edgesIgnoringSafeArea(.all)
-
-//            VStack(spacing: 0) {
-//                TopBarView(showBack: false)
-//                Spacer()
-//            }
-            
             // BOTTOM FLOATING CARD
             VStack {
                 Spacer()
@@ -56,9 +50,44 @@ struct SearchDriverView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton {
+                    router.popView()
+                }
+            }
+        }
+        .onAppear {
+            print("SearchDriverView appeared")
+            print("Pickup coordinate: \(viewModel.pickupCoordinate?.latitude ?? 0), \(viewModel.pickupCoordinate?.longitude ?? 0)")
+            print("Dropoff coordinate: \(viewModel.dropoffCoordinate?.latitude ?? 0), \(viewModel.dropoffCoordinate?.longitude ?? 0)")
+            
+            if let pickup = viewModel.pickupCoordinate {
+                viewModel.region.center = pickup
+            }
+        }
+    }
+    
+    func makeAnnotations() -> [MKPointAnnotation] {
+        var result: [MKPointAnnotation] = []
+        if let pickup = viewModel.pickupCoordinate {
+            let ann = MKPointAnnotation()
+            ann.coordinate = pickup
+            ann.title = "Pickup"
+            result.append(ann)
+        }
+        if let drop = viewModel.dropoffCoordinate {
+            let ann = MKPointAnnotation()
+            ann.coordinate = drop
+            ann.title = "Drop-off"
+            result.append(ann)
+        }
+        return result
     }
 }
 
-#Preview {
-    SearchDriverView()
-}
+//#Preview {
+//    SearchDriverView()
+//}

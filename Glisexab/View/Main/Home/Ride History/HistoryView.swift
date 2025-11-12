@@ -164,6 +164,6 @@ struct HistoryView: View {
 }
 
 #Preview {
-    ScheduleBookingView()
+    HistoryView()
 }
 

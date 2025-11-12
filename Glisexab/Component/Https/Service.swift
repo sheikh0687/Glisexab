@@ -69,8 +69,27 @@ final class Service {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    print("✅ API Success: \(url)")
-                    print("📤 Params: \(params ?? [:])")
+                    // Construct readable API URL for debugging
+                    if let params = params, !params.isEmpty {
+                        let queryString = params
+                            .map { "\($0.key)=\($0.value)" }
+                            .joined(separator: "&")
+                        
+                        let fullUrl = "\(url)?\(queryString)"
+                        print("""
+                        🟢 Full API for Browser
+                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        \(fullUrl)
+                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        """)
+                    } else {
+                        print("""
+                        🟢 Full API for Browser
+                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        \(url)
+                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        """)
+                    }
                     completion(.success(data))
                     
                 case .failure(let error):

@@ -9,28 +9,12 @@ import SwiftUI
 
 struct ScheduleBookingView: View {
     
-    @State private var selectedDate = Date()
     @State private var showDatePicker: Bool = false
     
-    @State private var selectedTime = Date()
     @State private var showTimePicker: Bool = false
     
-    @State private var note: String = ""
-    
     @EnvironmentObject private var router: NavigationRouter
-    
-    var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: selectedDate)
-    }
-
-    var formattedTime: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        return formatter.string(from: selectedTime)
-    }
+    @StateObject var viewModel: ScheduleBookingViewModel
     
     var body: some View {
         ZStack {
@@ -45,7 +29,7 @@ struct ScheduleBookingView: View {
                             Button {
                                 showDatePicker = true
                             } label: {
-                                Text(formattedDate)
+                                Text(viewModel.formattedDate)
                                     .font(.customfont(.regular, fontSize: 14))
                                     .foregroundColor(.black)
                                     .frame(maxWidth: .infinity)
@@ -56,7 +40,7 @@ struct ScheduleBookingView: View {
                             .sheet(isPresented: $showDatePicker) {
                                 if #available(iOS 16.0, *) {
                                     VStack {
-                                        DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                                        DatePicker("Select Date", selection: $viewModel.selectedDate, displayedComponents: .date)
                                             .datePickerStyle(.graphical)
                                             .padding()
                                         
@@ -77,7 +61,7 @@ struct ScheduleBookingView: View {
                             Button {
                                 showTimePicker = true
                             } label: {
-                                Text(formattedTime)
+                                Text(viewModel.formattedTime)
                                     .font(.customfont(.regular, fontSize: 14))
                                     .foregroundColor(.black)
                                     .frame(maxWidth: .infinity)
@@ -88,7 +72,7 @@ struct ScheduleBookingView: View {
                             .sheet(isPresented: $showTimePicker) {
                                 if #available(iOS 16.0, *) {
                                     VStack {
-                                        DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                                        DatePicker("Select Time", selection: $viewModel.selectedTime, displayedComponents: .hourAndMinute)
                                             .datePickerStyle(.wheel)
                                             .padding()
                                         
@@ -108,7 +92,7 @@ struct ScheduleBookingView: View {
                         Text("Note")
                             .font(.customfont(.medium, fontSize: 14))
                         ZStack(alignment: .topLeading) {
-                            TextEditor(text: $note)
+                            TextEditor(text: $viewModel.note)
                                 .font(.customfont(.medium, fontSize: 12))
                                 .foregroundColor(.gray)
                                 .frame(height: 80)
@@ -116,7 +100,7 @@ struct ScheduleBookingView: View {
                                 .padding(4)
     //                            .background(Color(.systemGray6))
                                 
-                            if note.isEmpty {
+                            if viewModel.note.isEmpty {
                                 Text("Enter any note here....")
                                     .font(.customfont(.light, fontSize: 12))
                                     .foregroundColor(.gray)
@@ -126,7 +110,10 @@ struct ScheduleBookingView: View {
                     }
                     
                     // Button
-                    Button(action: { print("Schedule Booking") }) {
+                    Button(action: {
+                        viewModel.schedule()
+                        router.popView()
+                    }) {
                         Text("Schedule Booking")
                             .font(.customfont(.bold, fontSize: 14))
                             .foregroundColor(.white)
@@ -164,6 +151,6 @@ struct ScheduleBookingView: View {
     }
 }
 
-#Preview {
-    ScheduleBookingView()
-}
+//#Preview {
+//    ScheduleBookingView(viewModel: <#ScheduleBookingViewModel#>)
+//}

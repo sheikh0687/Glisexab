@@ -26,7 +26,7 @@ struct RideRow: View {
                     .foregroundColor(Color.gray)
             }
             Spacer()
-            Text("$ \(vehicle.per_km_price ?? "")")
+            Text("$ \(vehicle.estimate_fair ?? "")")
                 .font(.customfont(.medium, fontSize: 14))
         }
         .padding(.vertical, 12)

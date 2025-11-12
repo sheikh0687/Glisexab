@@ -95,7 +95,7 @@ final class Api {
     
     func requestToFetchVehicle(params: [String: Any], completion: @escaping (Result<[Res_VehicleList], ApiError>) -> Void) {
         Service.shared.request (
-            url: Router.vehicle_list.url(),
+            url: Router.vehicle_list_with_calculation.url(),
             method: .get,
             params: params,
             responseType: Api_VehicleList.self
@@ -256,7 +256,7 @@ final class Api {
     
     func requestToAddNewRequest(params: [String: Any], completion: @escaping (Result<Res_AddNewRequest, ApiError>) -> Void) {
         Service.shared.request (
-            url: Router.get_user_address.url(),
+            url: Router.request_nearbuy_driver.url(),
             method: .get,
             params: params,
             responseType: Api_AddNewRequest.self
@@ -266,7 +266,7 @@ final class Api {
                 if response.status == "1", let data = response.result {
                     completion(.success(data))
                 } else {
-                    completion(.failure(.serverError(response.message ?? "Forget password failed")))
+                    completion(.failure(.serverError(response.message ?? "")))
                 }
             case .failure(let error):
                 completion(.failure(error))

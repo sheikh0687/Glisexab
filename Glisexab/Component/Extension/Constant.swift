@@ -10,3 +10,7 @@ import Foundation
 final class Constant {
     static let AppName = "Glisexab"
 }
+
+var localTimeZoneIdentifier: String { return
+    TimeZone.current.identifier }
+

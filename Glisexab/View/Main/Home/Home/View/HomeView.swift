@@ -51,7 +51,7 @@ struct HomeView: View {
                         isPickup = false
                         showSuggestions = true
                     }
-                    
+
                     Button {
                         
                         guard let pickupCoordinate = viewModel.pickupCoordinate,

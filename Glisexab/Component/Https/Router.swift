@@ -17,7 +17,7 @@ enum Router: String {
     case signup
     
     case get_profile
-    case vehicle_list
+    case vehicle_list_with_calculation
     case save_card_list
     case get_user_address
     
@@ -40,8 +40,8 @@ enum Router: String {
             return Router.oAuthRoute(path: "forgot_password")
         case .get_profile:
             return Router.oAuthRoute(path: "get_profile")
-        case .vehicle_list:
-            return Router.oAuthRoute(path: "vehicle_list")
+        case .vehicle_list_with_calculation:
+            return Router.oAuthRoute(path: "vehicle_list_with_calculation")
         case .save_card_list:
             return Router.oAuthRoute(path: "save_card_list")
         case .user_update_profile:

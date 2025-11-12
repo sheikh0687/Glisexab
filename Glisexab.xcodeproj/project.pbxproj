@@ -42,6 +42,7 @@
 		CF84301B2EB4868D00DFE02F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8430192EB4868D00DFE02F /* Reachability.m */; };
 		CF84301F2EB49B4D00DFE02F /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = CF84301E2EB49B4D00DFE02F /* CountryPicker */; };
 		CF87873C2E8CFAD200FEFB2D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */; };
+		CF87E38F2EC48F3C00BFBE03 /* ScheduleBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87E38E2EC48F3C00BFBE03 /* ScheduleBookViewModel.swift */; };
 		CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89E5042E99056E0026C76C /* SaveAddressView.swift */; };
 		CF8D2D152EB6191B00F452EB /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D2D142EB6191B00F452EB /* CustomAlertView.swift */; };
 		CF8D2D212EB638F200F452EB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D2D202EB638F200F452EB /* Constant.swift */; };
@@ -138,6 +139,7 @@
 		CF8430192EB4868D00DFE02F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CF84301C2EB4868F00DFE02F /* Glisexab-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Glisexab-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF87873B2E8CFAD200FEFB2D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CF87E38E2EC48F3C00BFBE03 /* ScheduleBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBookViewModel.swift; sourceTree = "<group>"; };
 		CF89E5042E99056E0026C76C /* SaveAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAddressView.swift; sourceTree = "<group>"; };
 		CF8D2D142EB6191B00F452EB /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		CF8D2D202EB638F200F452EB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -494,6 +496,22 @@
 			path = Objc;
 			sourceTree = "<group>";
 		};
+		CF87E38C2EC48F1700BFBE03 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF87E38D2EC48F1E00BFBE03 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF87E38E2EC48F3C00BFBE03 /* ScheduleBookViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		CF89E5062E9905710026C76C /* Save Address */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,7 +810,8 @@
 		CFD1EFFF2E94DDCE00C792A7 /* Schedule Booking */ = {
 			isa = PBXGroup;
 			children = (
-				CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */,
+				CF87E38D2EC48F1E00BFBE03 /* View Model */,
+				CF87E38C2EC48F1700BFBE03 /* View */,
 			);
 			path = "Schedule Booking";
 			sourceTree = "<group>";
@@ -1000,6 +1019,7 @@
 				CF06445D2EB23E74003603CC /* DateModel.swift in Sources */,
 				CF8430142EB4865B00DFE02F /* InternetConnection.swift in Sources */,
 				CF4D79FE2EB8C15E008B4653 /* VehicleList.swift in Sources */,
+				CF87E38F2EC48F3C00BFBE03 /* ScheduleBookViewModel.swift in Sources */,
 				CF99840E2EB5DD990066FC88 /* CustomErrorBanner.swift in Sources */,
 				CF84301A2EB4868D00DFE02F /* MBProgressHUD.m in Sources */,
 				CF84301B2EB4868D00DFE02F /* Reachability.m in Sources */,
