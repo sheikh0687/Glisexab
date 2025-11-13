@@ -12,12 +12,22 @@ struct SearchDriverView: View {
     
     @EnvironmentObject private var router: NavigationRouter
     @ObservedObject var viewModel: LocationSearchViewModel
-        
-    @State private var progress: CGFloat = 0.45
-
+    @EnvironmentObject private var appState: AppState
+    
+    @State private var progress: CGFloat = 0.0
+    @State private var timer: Timer?
+    
+    @StateObject var searchViewModel = SearchDriverViewModel()
+    
     var body: some View {
+        
         ZStack(alignment: .top) {
             // BOTTOM FLOATING CARD
+            CustomMapView (
+                region: $viewModel.region,
+                annotations: makeAnnotations(),
+                routes: viewModel.route.map { [$0] } ?? [] )
+            
             VStack {
                 Spacer()
                 VStack(spacing: 40) {
@@ -35,7 +45,6 @@ struct SearchDriverView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 40)
-                    
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 200)
@@ -64,8 +73,39 @@ struct SearchDriverView: View {
             print("Pickup coordinate: \(viewModel.pickupCoordinate?.latitude ?? 0), \(viewModel.pickupCoordinate?.longitude ?? 0)")
             print("Dropoff coordinate: \(viewModel.dropoffCoordinate?.latitude ?? 0), \(viewModel.dropoffCoordinate?.longitude ?? 0)")
             
-            if let pickup = viewModel.pickupCoordinate {
-                viewModel.region.center = pickup
+            viewModel.updateRoute()
+            startProgressTimer(searchViewModel: searchViewModel, appState: appState)
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
+        .onChange(of: searchViewModel.isSuccess) { isSuccessfull in
+            if isSuccessfull {
+                print("Successfully requst fethced!!")
+                if let obj = searchViewModel.userAvtiveReq {
+                    if obj.status != "Pending" {
+                        let pickupCoord = searchViewModel.data?.pickup.locationCoordinate()
+                        let dropoffCoord = searchViewModel.data?.dropoff.locationCoordinate()
+
+                        let locationSearchVM = LocationSearchViewModel()
+                        locationSearchVM.pickupCoordinate = pickupCoord
+                        locationSearchVM.dropoffCoordinate = dropoffCoord
+
+                        router.push(to: .trackDriver(locationSearchVM))
+                    }
+                }
+            }
+        }
+    }
+    
+    func startProgressTimer(searchViewModel: SearchDriverViewModel, appState: AppState) {
+        timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+            progress += 0.01
+            if progress >= 1.0 {
+                timer?.invalidate()
+            }
+            DispatchQueue.main.async {
+                searchViewModel.userActiveRequest(appState: appState)
             }
         }
     }
@@ -88,6 +128,8 @@ struct SearchDriverView: View {
     }
 }
 
-//#Preview {
-//    SearchDriverView()
-//}
+#Preview {
+    SearchDriverView(viewModel: .init())
+        .environmentObject(NavigationRouter())
+        .environmentObject(AppState())
+}

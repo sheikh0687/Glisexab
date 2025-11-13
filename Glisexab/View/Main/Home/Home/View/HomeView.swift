@@ -9,7 +9,6 @@ import SwiftUI
 import _MapKit_SwiftUI
 
 struct HomeView: View {
-    
     @StateObject private var viewModel = LocationSearchViewModel()
     @State private var selectedTab: Int = 0
     @State private var showSuggestions = false
@@ -17,9 +16,9 @@ struct HomeView: View {
     @State private var showBookingAlert = false
     @StateObject private var keyboard = KeyboardResponder()
     @EnvironmentObject private var router: NavigationRouter
-    
+
     let tabs = [("home", "Home"), ("chat", "Chat"), ("history", "History"), ("profile", "Profile")]
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             CustomMapView (
@@ -28,11 +27,10 @@ struct HomeView: View {
                 routes: viewModel.route.map { [$0] } ?? []
             )
             .edgesIgnoringSafeArea(.all)
-            
+
             VStack(spacing: 18) {
                 VStack(spacing: 12) {
-                    
-                    addressPicker (
+                    addressPicker(
                         isPickup: true,
                         label: "Pickup Address",
                         text: $viewModel.pickupAddress
@@ -41,8 +39,8 @@ struct HomeView: View {
                         isPickup = true
                         showSuggestions = true
                     }
-                    
-                    addressPicker (
+
+                    addressPicker(
                         isPickup: false,
                         label: "Drop Address",
                         text: $viewModel.dropoffAddress
@@ -53,17 +51,18 @@ struct HomeView: View {
                     }
 
                     Button {
-                        
                         guard let pickupCoordinate = viewModel.pickupCoordinate,
                               let dropoffCoordinate = viewModel.dropoffCoordinate,
-                                !viewModel.pickupAddress.isEmpty,
-                              !viewModel.dropoffAddress.isEmpty
+                              !viewModel.pickupAddress.isEmpty,
+                              !viewModel.dropoffAddress.isEmpty,
+                              !pickupCoordinate.latitude.isNaN && !pickupCoordinate.longitude.isNaN,
+                              !dropoffCoordinate.latitude.isNaN && !dropoffCoordinate.longitude.isNaN
                         else {
                             showBookingAlert = true
                             return
                         }
-                        
-                        let bookingData = BookingDetailData (
+
+                        let bookingData = BookingDetailData(
                             pickup: LocationDetail(address: viewModel.pickupAddress,
                                                    latitude: pickupCoordinate.latitude,
                                                    longitude: pickupCoordinate.longitude),
@@ -71,7 +70,7 @@ struct HomeView: View {
                                                     latitude: dropoffCoordinate.latitude,
                                                     longitude: dropoffCoordinate.longitude)
                         )
-                        
+
                         router.push(to: .bookingDetails(bookingData))
                     } label: {
                         Text("Book Trip")
@@ -88,7 +87,7 @@ struct HomeView: View {
                     } message: {
                         Text("Please select both Pickup and Drop-off addresses before booking.")
                     }
-                    
+
                     if showSuggestions {
                         ScrollView {
                             VStack(spacing: 0) {
@@ -125,10 +124,9 @@ struct HomeView: View {
                 .cornerRadius(22)
                 .shadow(color: .black.opacity(0.12), radius: 12, x: 0, y: 5)
                 .padding(.horizontal, 18)
-                
+
                 Spacer()
-                
-                // Bottom Navigation Bar
+
                 if !keyboard.keyboardShown {
                     HStack(spacing: 10) {
                         ForEach(tabs.indices, id: \.self) { index in
@@ -165,7 +163,6 @@ struct HomeView: View {
                     .padding(.vertical, 12)
                     .background(Color.colorNeavyBlue)
                     .shadow(color: Color.black.opacity(0.25), radius: 12, x: 0, y: 6)
-                    
                 }
             }
             .padding(.top, 20)
@@ -189,7 +186,7 @@ struct HomeView: View {
         .animation(.easeOut, value: showSuggestions)
         .animation(.easeOut, value: keyboard.keyboardShown)
     }
-    
+
     func addressPicker(isPickup: Bool, label: String, text: Binding<String>) -> some View {
         HStack {
             Image(systemName: isPickup ? "mappin.and.ellipse" : "flag")
@@ -199,7 +196,6 @@ struct HomeView: View {
                     viewModel.searchText = value
                 })
             Spacer()
-            // Show clear button only if there is some text
             if !text.wrappedValue.isEmpty {
                 Button {
                     text.wrappedValue = ""
@@ -216,16 +212,18 @@ struct HomeView: View {
         .background(Color(.secondarySystemBackground))
         .cornerRadius(10)
     }
-    
+
     func makeAnnotations() -> [MKPointAnnotation] {
         var result: [MKPointAnnotation] = []
-        if let pickup = viewModel.pickupCoordinate {
+        if let pickup = viewModel.pickupCoordinate,
+           !pickup.latitude.isNaN && !pickup.longitude.isNaN {
             let ann = MKPointAnnotation()
             ann.coordinate = pickup
             ann.title = "Pickup"
             result.append(ann)
         }
-        if let drop = viewModel.dropoffCoordinate {
+        if let drop = viewModel.dropoffCoordinate,
+           !drop.latitude.isNaN && !drop.longitude.isNaN {
             let ann = MKPointAnnotation()
             ann.coordinate = drop
             ann.title = "Drop-off"

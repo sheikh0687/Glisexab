@@ -13,6 +13,8 @@
 		CF06445B2EB2295B003603CC /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06445A2EB2295B003603CC /* Utility.swift */; };
 		CF06445D2EB23E74003603CC /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06445C2EB23E74003603CC /* DateModel.swift */; };
 		CF0C284A2E93EEB0007F9C3B /* ScheduleBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */; };
+		CF0C34DF2EC5B9F600E4EEBF /* UserActiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C34DE2EC5B9F600E4EEBF /* UserActiveRequest.swift */; };
+		CF0C34E12EC5BA7500E4EEBF /* SearchDriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C34E02EC5BA7500E4EEBF /* SearchDriverViewModel.swift */; };
 		CF141C2E2EB334A100EB00F8 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF141C2D2EB334A100EB00F8 /* AppState.swift */; };
 		CF1531252EBDEC8F00F4B55F /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1531242EBDEC8F00F4B55F /* AddAddressViewModel.swift */; };
 		CF1531282EBDED6E00F4B55F /* AddAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1531272EBDED6E00F4B55F /* AddAddress.swift */; };
@@ -108,6 +110,8 @@
 		CF06445A2EB2295B003603CC /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		CF06445C2EB23E74003603CC /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		CF0C28492E93EEB0007F9C3B /* ScheduleBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBookingView.swift; sourceTree = "<group>"; };
+		CF0C34DE2EC5B9F600E4EEBF /* UserActiveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActiveRequest.swift; sourceTree = "<group>"; };
+		CF0C34E02EC5BA7500E4EEBF /* SearchDriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDriverViewModel.swift; sourceTree = "<group>"; };
 		CF141C2D2EB334A100EB00F8 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		CF1531242EBDEC8F00F4B55F /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
 		CF1531272EBDED6E00F4B55F /* AddAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddAddress.swift; path = "Glisexab/View/Main/Settings/Add Address/View Model/AddAddress.swift"; sourceTree = SOURCE_ROOT; };
@@ -232,6 +236,30 @@
 				CF4D79FA2EB8C138008B4653 /* View */,
 			);
 			path = "Booking Detail";
+			sourceTree = "<group>";
+		};
+		CF0C34DB2EC5B9DA00E4EEBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFD1F0032E94F41B00C792A7 /* SearchDriverView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF0C34DC2EC5B9E300E4EEBF /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C34E02EC5BA7500E4EEBF /* SearchDriverViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		CF0C34DD2EC5B9E900E4EEBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C34DE2EC5B9F600E4EEBF /* UserActiveRequest.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CF141C2C2EB3347000EB00F8 /* App State */ = {
@@ -827,7 +855,9 @@
 		CFD1F0062E94FC4000C792A7 /* Search Driver */ = {
 			isa = PBXGroup;
 			children = (
-				CFD1F0032E94F41B00C792A7 /* SearchDriverView.swift */,
+				CF0C34DD2EC5B9E900E4EEBF /* Model */,
+				CF0C34DC2EC5B9E300E4EEBF /* View Model */,
+				CF0C34DB2EC5B9DA00E4EEBF /* View */,
 			);
 			path = "Search Driver";
 			sourceTree = "<group>";
@@ -993,6 +1023,7 @@
 				CF1D74662EBC6F7D007A71D7 /* ChangePasswordViewModel.swift in Sources */,
 				CF5659962EB37C6200A4B3D7 /* LoginViewModel.swift in Sources */,
 				CF89E5052E99056E0026C76C /* SaveAddressView.swift in Sources */,
+				CF0C34DF2EC5B9F600E4EEBF /* UserActiveRequest.swift in Sources */,
 				CF8FAF702EB4CD5A0062DA16 /* LocationData.swift in Sources */,
 				CFC1AED92EB3523D001E57AE /* DataModel.swift in Sources */,
 				CFD149D22EB9D43E00CBC397 /* RideRow.swift in Sources */,
@@ -1026,6 +1057,7 @@
 				CFC1AED52EB34F11001E57AE /* ChatView.swift in Sources */,
 				CF8430112EB485BE00DFE02F /* Service.swift in Sources */,
 				CF8D2D212EB638F200F452EB /* Constant.swift in Sources */,
+				CF0C34E12EC5BA7500E4EEBF /* SearchDriverViewModel.swift in Sources */,
 				CFD1F0012E94DE0900C792A7 /* PopupBargainView.swift in Sources */,
 				CF1531282EBDED6E00F4B55F /* AddAddress.swift in Sources */,
 				CF1B11632E8CF7280044E1B2 /* UiExtension.swift in Sources */,

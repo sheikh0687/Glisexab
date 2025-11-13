@@ -57,7 +57,7 @@ struct PopupBargainView: View {
 
                 // Button
                 Button(action: {
-                    router.push(to: .trackDriver)
+//                    router.push(to: .trackDriver)
                 }) {
                     Text("Send")
                         .font(.customfont(.bold, fontSize: 14))
@@ -68,7 +68,7 @@ struct PopupBargainView: View {
                 }
                 
                 Button(action: {
-                    router.push(to: .trackDriver)
+//                    router.push(to: .trackDriver)
                 }) {
                     Text("Skip")
                         .font(.customfont(.bold, fontSize: 14))

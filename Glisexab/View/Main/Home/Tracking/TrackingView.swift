@@ -11,7 +11,7 @@ import MapKit
 struct TrackingView: View {
     
     // MARK: PROPERTY
-    @StateObject private var locationManager = LocationSearchViewModel()
+    @ObservedObject var locationManager: LocationSearchViewModel
     @State private var showMoreDetail: Bool = false
     @State private var showCancelPopup = false
     @State private var showRideDetails = false
@@ -23,8 +23,10 @@ struct TrackingView: View {
         ZStack(alignment: .top) {
             
             // MARK: MAP VIEW
-            Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
-                .edgesIgnoringSafeArea(.all)
+            CustomMapView (
+                region: $locationManager.region,
+                annotations: makeAnnotations(),
+                routes: locationManager.route.map { [$0] } ?? [] )
             
             // MARK: Top ADDRESS VIEW
             VStack(alignment: .leading) {
@@ -277,10 +279,29 @@ struct TrackingView: View {
         }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
+            locationManager.updateRoute()
         }
     }
+    
+    func makeAnnotations() -> [MKPointAnnotation] {
+        var result: [MKPointAnnotation] = []
+        if let pickup = locationManager.pickupCoordinate {
+            let ann = MKPointAnnotation()
+            ann.coordinate = pickup
+            ann.title = "Pickup"
+            result.append(ann)
+        }
+        if let drop = locationManager.dropoffCoordinate {
+            let ann = MKPointAnnotation()
+            ann.coordinate = drop
+            ann.title = "Drop-off"
+            result.append(ann)
+        }
+        return result
+    }
+
 }
 
 #Preview {
-    TrackingView()
+    TrackingView(locationManager: .init())
 }

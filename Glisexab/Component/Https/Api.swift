@@ -273,4 +273,24 @@ final class Api {
             }
         }
     }
+    
+    func requestToUserActiveReq(params: [String: Any], completion: @escaping (Result<Res_UserActiveRequest, ApiError>) -> Void) {
+        Service.shared.request (
+            url: Router.get_user_active_request.url(),
+            method: .get,
+            params: params,
+            responseType: Api_UserActiveRequest.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                if response.status == "1", let data = response.result {
+                    completion(.success(data))
+                } else {
+                    completion(.failure(.serverError(response.message ?? "")))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

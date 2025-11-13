@@ -79,8 +79,6 @@ struct BookingView: View {
                 let locationSearchVM = LocationSearchViewModel()
                 locationSearchVM.pickupCoordinate = pickupCoord
                 locationSearchVM.dropoffCoordinate = dropoffCoord
-                print(locationSearchVM.pickupCoordinate ?? "")
-                print(locationSearchVM.dropoffCoordinate ?? "")
                 
                 router.push(to: .searchDriver(locationSearchVM))
             }
@@ -91,7 +89,7 @@ struct BookingView: View {
             }
         }
         .alert(isPresented: $showErrorBanner) {
-            Alert(
+            Alert (
                 title: Text(Constant.AppName),
                 message: Text(viewModel.customError?.localizedDescription ?? "Something went wrong!"),
                 dismissButton: .default(Text("Ok")) {

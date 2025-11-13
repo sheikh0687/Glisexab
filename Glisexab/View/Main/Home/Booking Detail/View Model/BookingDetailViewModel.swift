@@ -133,8 +133,8 @@ class BookingDetailViewModel: ObservableObject {
         paramDict["pickup_lat"] = data?.pickup.latitude ?? ""
         paramDict["pickup_lon"] = data?.pickup.longitude ?? ""
         paramDict["drop_address"] = data?.dropoff.address ?? ""
-        paramDict["dropoff_lat"] = data?.dropoff.address ?? ""
-        paramDict["dropoff_lon"] = data?.dropoff.address ?? ""
+        paramDict["dropoff_lat"] = data?.dropoff.latitude ?? ""
+        paramDict["dropoff_lon"] = data?.dropoff.longitude ?? ""
         paramDict["payment_status"] = paymentStatus
         paramDict["payment_type"] = paymentType
         paramDict["total_amount"] = fairEstimate

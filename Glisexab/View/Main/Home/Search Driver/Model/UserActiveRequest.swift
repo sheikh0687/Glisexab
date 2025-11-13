@@ -1,18 +1,19 @@
 //
-//  AddNewRequest.swift
+//  UserActiveRequest.swift
 //  Glisexab
 //
-//  Created by Techimmense Software Solutions on 10/11/25.
+//  Created by Techimmense Software Solutions on 13/11/25.
 //
 
 import Foundation
 
-struct Api_AddNewRequest : Codable {
-    let result : Res_AddNewRequest?
+struct Api_UserActiveRequest : Codable {
+    let result : Res_UserActiveRequest?
     let message : String?
     let status : String?
 
     enum CodingKeys: String, CodingKey {
+
         case result = "result"
         case message = "message"
         case status = "status"
@@ -20,13 +21,13 @@ struct Api_AddNewRequest : Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        result = try values.decodeIfPresent(Res_AddNewRequest.self, forKey: .result)
+        result = try values.decodeIfPresent(Res_UserActiveRequest.self, forKey: .result)
         message = try values.decodeIfPresent(String.self, forKey: .message)
         status = try values.decodeIfPresent(String.self, forKey: .status)
     }
 }
 
-struct Res_AddNewRequest : Codable {
+struct Res_UserActiveRequest : Codable {
     let id : String?
     let user_id : String?
     let driver_id : String?
@@ -101,7 +102,15 @@ struct Res_AddNewRequest : Codable {
     let tip_thankyou_msg : String?
     let ride_time : String?
     let ride_time_price : String?
-    let admin_set_request_time : Int?
+    let chat_message_count : Int?
+    let distance_away : String?
+    let time_away : String?
+    let timer_start : String?
+    let to_long_time : Int?
+    let timer_free_minute : String?
+    let each_minute_charge : String?
+    let no_show_fee_time : Int?
+    let car_details : Car_details?
 
     enum CodingKeys: String, CodingKey {
 
@@ -179,7 +188,15 @@ struct Res_AddNewRequest : Codable {
         case tip_thankyou_msg = "tip_thankyou_msg"
         case ride_time = "ride_time"
         case ride_time_price = "ride_time_price"
-        case admin_set_request_time = "admin_set_request_time"
+        case chat_message_count = "chat_message_count"
+        case distance_away = "distance_away"
+        case time_away = "time_away"
+        case timer_start = "timer_start"
+        case to_long_time = "to_long_time"
+        case timer_free_minute = "timer_free_minute"
+        case each_minute_charge = "each_minute_charge"
+        case no_show_fee_time = "no_show_fee_time"
+        case car_details = "car_details"
     }
 
     init(from decoder: Decoder) throws {
@@ -258,6 +275,113 @@ struct Res_AddNewRequest : Codable {
         tip_thankyou_msg = try values.decodeIfPresent(String.self, forKey: .tip_thankyou_msg)
         ride_time = try values.decodeIfPresent(String.self, forKey: .ride_time)
         ride_time_price = try values.decodeIfPresent(String.self, forKey: .ride_time_price)
-        admin_set_request_time = try values.decodeIfPresent(Int.self, forKey: .admin_set_request_time)
+        chat_message_count = try values.decodeIfPresent(Int.self, forKey: .chat_message_count)
+        distance_away = try values.decodeIfPresent(String.self, forKey: .distance_away)
+        time_away = try values.decodeIfPresent(String.self, forKey: .time_away)
+        timer_start = try values.decodeIfPresent(String.self, forKey: .timer_start)
+        to_long_time = try values.decodeIfPresent(Int.self, forKey: .to_long_time)
+        timer_free_minute = try values.decodeIfPresent(String.self, forKey: .timer_free_minute)
+        each_minute_charge = try values.decodeIfPresent(String.self, forKey: .each_minute_charge)
+        no_show_fee_time = try values.decodeIfPresent(Int.self, forKey: .no_show_fee_time)
+        car_details = try values.decodeIfPresent(Car_details.self, forKey: .car_details)
     }
+}
+
+struct Car_details : Codable {
+    let id : String?
+    let vehicle : String?
+    let image : String?
+    let status : String?
+    let no_of_bag : String?
+    let date_time : String?
+    let base_fair : String?
+    let per_hour : String?
+    let per_minute : String?
+    let per_minute_waiting_charge : String?
+    let rush_hour_start_time : String?
+    let rush_hour_end_time : String?
+    let rush_hour_price : String?
+    let per_km_price : String?
+    let type : String?
+    let no_of_passenger : String?
+    let list_order : String?
+    let timer_free_minute : String?
+    let each_minute_charge : String?
+    let stop_Timer_Free_Minute : String?
+    let stop_Timer_Per_Min_Charge : String?
+    let hourly_rate : String?
+    let driver_earning_percentage : String?
+    let no_show_fee : String?
+    let cancelation_fee : String?
+    let booking_fee : String?
+    let web_Stop_Price : String?
+    let safety_fee : String?
+    let airport_fee : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case vehicle = "vehicle"
+        case image = "image"
+        case status = "status"
+        case no_of_bag = "no_of_bag"
+        case date_time = "date_time"
+        case base_fair = "base_fair"
+        case per_hour = "per_hour"
+        case per_minute = "per_minute"
+        case per_minute_waiting_charge = "per_minute_waiting_charge"
+        case rush_hour_start_time = "rush_hour_start_time"
+        case rush_hour_end_time = "rush_hour_end_time"
+        case rush_hour_price = "rush_hour_price"
+        case per_km_price = "per_km_price"
+        case type = "type"
+        case no_of_passenger = "no_of_passenger"
+        case list_order = "list_order"
+        case timer_free_minute = "timer_free_minute"
+        case each_minute_charge = "each_minute_charge"
+        case stop_Timer_Free_Minute = "Stop_Timer_Free_Minute"
+        case stop_Timer_Per_Min_Charge = "Stop_Timer_Per_Min_Charge"
+        case hourly_rate = "hourly_rate"
+        case driver_earning_percentage = "driver_earning_percentage"
+        case no_show_fee = "no_show_fee"
+        case cancelation_fee = "cancelation_fee"
+        case booking_fee = "booking_fee"
+        case web_Stop_Price = "Web_Stop_Price"
+        case safety_fee = "safety_fee"
+        case airport_fee = "airport_fee"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
+        vehicle = try values.decodeIfPresent(String.self, forKey: .vehicle)
+        image = try values.decodeIfPresent(String.self, forKey: .image)
+        status = try values.decodeIfPresent(String.self, forKey: .status)
+        no_of_bag = try values.decodeIfPresent(String.self, forKey: .no_of_bag)
+        date_time = try values.decodeIfPresent(String.self, forKey: .date_time)
+        base_fair = try values.decodeIfPresent(String.self, forKey: .base_fair)
+        per_hour = try values.decodeIfPresent(String.self, forKey: .per_hour)
+        per_minute = try values.decodeIfPresent(String.self, forKey: .per_minute)
+        per_minute_waiting_charge = try values.decodeIfPresent(String.self, forKey: .per_minute_waiting_charge)
+        rush_hour_start_time = try values.decodeIfPresent(String.self, forKey: .rush_hour_start_time)
+        rush_hour_end_time = try values.decodeIfPresent(String.self, forKey: .rush_hour_end_time)
+        rush_hour_price = try values.decodeIfPresent(String.self, forKey: .rush_hour_price)
+        per_km_price = try values.decodeIfPresent(String.self, forKey: .per_km_price)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        no_of_passenger = try values.decodeIfPresent(String.self, forKey: .no_of_passenger)
+        list_order = try values.decodeIfPresent(String.self, forKey: .list_order)
+        timer_free_minute = try values.decodeIfPresent(String.self, forKey: .timer_free_minute)
+        each_minute_charge = try values.decodeIfPresent(String.self, forKey: .each_minute_charge)
+        stop_Timer_Free_Minute = try values.decodeIfPresent(String.self, forKey: .stop_Timer_Free_Minute)
+        stop_Timer_Per_Min_Charge = try values.decodeIfPresent(String.self, forKey: .stop_Timer_Per_Min_Charge)
+        hourly_rate = try values.decodeIfPresent(String.self, forKey: .hourly_rate)
+        driver_earning_percentage = try values.decodeIfPresent(String.self, forKey: .driver_earning_percentage)
+        no_show_fee = try values.decodeIfPresent(String.self, forKey: .no_show_fee)
+        cancelation_fee = try values.decodeIfPresent(String.self, forKey: .cancelation_fee)
+        booking_fee = try values.decodeIfPresent(String.self, forKey: .booking_fee)
+        web_Stop_Price = try values.decodeIfPresent(String.self, forKey: .web_Stop_Price)
+        safety_fee = try values.decodeIfPresent(String.self, forKey: .safety_fee)
+        airport_fee = try values.decodeIfPresent(String.self, forKey: .airport_fee)
+    }
+
 }
