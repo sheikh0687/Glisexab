@@ -11,13 +11,16 @@ import MapKit
 struct TrackingView: View {
     
     // MARK: PROPERTY
-    @ObservedObject var locationManager: LocationSearchViewModel
+    @StateObject var locationManager = LocationSearchViewModel()
     @State private var showMoreDetail: Bool = false
     @State private var showCancelPopup = false
     @State private var showRideDetails = false
     @State private var showDriverDetails = false
     
     @EnvironmentObject private var router: NavigationRouter
+    @EnvironmentObject private var appState: AppState
+    
+    @StateObject var viewModel = SearchDriverViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -40,11 +43,11 @@ struct TrackingView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Pickup Address")
                             .font(.customfont(.bold, fontSize: 14))
-                        Text("1901 Thornridge Cir. Shiloh, Hawaii 81063 Indore 456789")
+                        Text(viewModel.obj_Res?.pick_address ?? "")
                             .font(.customfont(.medium, fontSize: 12))
                             .multilineTextAlignment(.leading)
                         HStack {
-                            Text("2 min away")
+                            Text("\(viewModel.obj_Res?.distance_away ?? "") min away")
                                 .font(.customfont(.medium, fontSize: 12))
                                 .foregroundColor(.colorGreen)
                             Spacer()
@@ -75,7 +78,7 @@ struct TrackingView: View {
             // MARK: BOTTOM VIEW
             VStack {
                 Spacer()
-                 VStack(spacing: 0) {
+                VStack(spacing: 0) {
                     // Driver Timing
                     HStack {
                         Button {
@@ -87,7 +90,7 @@ struct TrackingView: View {
                                 .frame(width: 30, height: 30)
                         }
                         Spacer()
-                        Text("Your driver is arriving  in 2 minute")
+                        Text("Your driver is arriving in \(viewModel.obj_Res?.distance ?? "") minute")
                             .font(.customfont(.medium, fontSize: 16))
                         Spacer()
                         
@@ -116,10 +119,19 @@ struct TrackingView: View {
                     
                     // Vehicle and Driver Detail
                     HStack {
-                        Image("profileEdit")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 70, height: 70)
+                        if let uiImage = viewModel.profileImage {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .clipShape(Circle())
+                        } else {
+                            Image("profileEdit")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 70, height: 70)
+                                .clipShape(Circle())
+                        }
                         Spacer().frame(width: 10)
                         VStack(spacing: 6) {
                             Text("Jerome Bell")
@@ -174,15 +186,24 @@ struct TrackingView: View {
                     // Vehicle Detail
                     if showMoreDetail {
                         HStack {
-                            Image("luxury")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 140, height: 120)
-                            
+                            if let uiImage = viewModel.vehcileImage{
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 140, height: 120)
+//                                    .clipShape(Circle())
+                            } else {
+                                Image("luxury")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 140, height: 120)
+//                                    .clipShape(Circle())
+                            }
+
                             Spacer()
                             
                             VStack(spacing: 4) {
-                                Text("Luxury")
+                                Text(viewModel.obj_Res?.car_details?.vehicle ?? "")
                                     .font(.customfont(.medium, fontSize: 16))
                                     .foregroundColor(.gray)
                                 Text("4786")
@@ -202,7 +223,7 @@ struct TrackingView: View {
                                 .foregroundColor(.red)
                                 .font(.system(size: 18))
                             
-                            Text("1901 Thornridge Cir. Shiloh, Hawaii 81063")
+                            Text(viewModel.obj_Res?.pick_address ?? "")
                                 .font(.customfont(.medium, fontSize: 14))
                                 .multilineTextAlignment(.leading)
                         }
@@ -212,7 +233,7 @@ struct TrackingView: View {
                                 .foregroundColor(.green)
                                 .font(.system(size: 18))
                             
-                            Text("2715 Ash Dr. San Jose, South Dakota 83475")
+                            Text(viewModel.obj_Res?.drop_address ?? "")
                                 .font(.customfont(.medium, fontSize: 14))
                                 .multilineTextAlignment(.leading)
                         }
@@ -279,7 +300,26 @@ struct TrackingView: View {
         }
         .onAppear {
             UINavigationBar.setTitleColor(.white)
-            locationManager.updateRoute()
+            viewModel.userActiveRequest(appState: appState)
+        }
+        .onChange(of: viewModel.isSuccess) { isSuccess in
+            if isSuccess {
+                if let obj = viewModel.obj_Res {
+                    if let pickLat = Double(obj.pickup_lat ?? ""),
+                       let pickLon = Double(obj.pickup_lon ?? ""),
+                       let dropLat = Double(obj.dropoff_lat ?? ""),
+                       let dropLon = Double(obj.dropoff_lon ?? "") {
+                        
+                        let pickupCoord = CLLocationCoordinate2D(latitude: pickLat, longitude: pickLon)
+                        let dropoffCoord = CLLocationCoordinate2D(latitude: dropLat, longitude: dropLon)
+                        
+                        locationManager.pickupCoordinate = pickupCoord
+                        locationManager.dropoffCoordinate = dropoffCoord
+                    } else {
+                        print("Invalid coordinates received")
+                    }
+                }
+            }
         }
     }
     
@@ -299,9 +339,11 @@ struct TrackingView: View {
         }
         return result
     }
-
+    
 }
 
 #Preview {
-    TrackingView(locationManager: .init())
+    TrackingView()
+        .environmentObject(NavigationRouter())
+        .environmentObject(AppState())
 }

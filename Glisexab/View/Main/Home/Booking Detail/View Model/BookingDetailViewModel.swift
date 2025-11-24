@@ -31,7 +31,7 @@ class BookingDetailViewModel: ObservableObject {
     @Published var cardId: String = ""
     @Published var dateTime: String = ""
     @Published var distance: String = ""
-    @Published var paymentType: String = ""
+    @Published var paymentType: String = "Cash"
     @Published var paymentStatus: String = ""
     
     @Published var data: BookingDetailData?
@@ -138,11 +138,11 @@ class BookingDetailViewModel: ObservableObject {
         paramDict["payment_status"] = paymentStatus
         paramDict["payment_type"] = paymentType
         paramDict["total_amount"] = fairEstimate
-        paramDict["card_id"] = cardId
-        paramDict["cust_id"] = appState.cardiD
+        paramDict["card_id"] = ""
+        paramDict["cust_id"] = ""
         paramDict["date_time"] = dateTime
-        paramDict["date"] = scheduleDate
-        paramDict["time"] = scheduleTime
+        paramDict["date"] = bookingType == "Now" ? Utility.getCurrentDate() : scheduleDate
+        paramDict["time"] = bookingType == "Now" ? Utility.getCurrentTime() : scheduleTime
         paramDict["ride_time_price"] = ""
         paramDict["ride_time"] = ""
         paramDict["request_add_time"] = ""
@@ -151,6 +151,7 @@ class BookingDetailViewModel: ObservableObject {
         paramDict["admin_commission"] = ""
         paramDict["driver_amount"] = ""
         paramDict["guest_email"] = ""
+        paramDict["bargaining_offer_amount"] = fairEstimate
         
         print(paramDict)
         

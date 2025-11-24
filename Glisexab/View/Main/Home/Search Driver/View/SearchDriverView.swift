@@ -11,13 +11,13 @@ import MapKit
 struct SearchDriverView: View {
     
     @EnvironmentObject private var router: NavigationRouter
-    @ObservedObject var viewModel: LocationSearchViewModel
     @EnvironmentObject private var appState: AppState
     
     @State private var progress: CGFloat = 0.0
     @State private var timer: Timer?
     
     @StateObject var searchViewModel = SearchDriverViewModel()
+    @ObservedObject var viewModel: LocationSearchViewModel
     
     var body: some View {
         
@@ -82,16 +82,9 @@ struct SearchDriverView: View {
         .onChange(of: searchViewModel.isSuccess) { isSuccessfull in
             if isSuccessfull {
                 print("Successfully requst fethced!!")
-                if let obj = searchViewModel.userAvtiveReq {
-                    if obj.status != "Pending" {
-                        let pickupCoord = searchViewModel.data?.pickup.locationCoordinate()
-                        let dropoffCoord = searchViewModel.data?.dropoff.locationCoordinate()
-
-                        let locationSearchVM = LocationSearchViewModel()
-                        locationSearchVM.pickupCoordinate = pickupCoord
-                        locationSearchVM.dropoffCoordinate = dropoffCoord
-
-                        router.push(to: .trackDriver(locationSearchVM))
+                if let obj = searchViewModel.obj_Res {
+                    if obj.status == "Pending" {
+                        router.push(to: .trackDriver)
                     }
                 }
             }

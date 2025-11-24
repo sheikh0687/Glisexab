@@ -49,6 +49,22 @@ class Utility {
         }
     }
     
+    class func getCurrentDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale.current
+        let date:String = dateFormatter.string(from: Date())
+        return date
+    }
+    
+    class func getCurrentTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.locale = Locale.current
+        let date:String = dateFormatter.string(from: Date())
+        return date
+    }
+    
     // MARK: - SwiftUI WebImage helper View
     
     struct CustomWebImage: View {

@@ -134,7 +134,6 @@ struct ScheduleBookingView: View {
                 .padding(.top, 40)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-//            .ignoresSafeArea()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)

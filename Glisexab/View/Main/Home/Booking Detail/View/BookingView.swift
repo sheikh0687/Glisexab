@@ -221,7 +221,7 @@ struct BookingView: View {
                             viewModel.vehicleiD = vehicle.vehicleId ?? ""
                             viewModel.vehicleName = vehicle.vehicle ?? ""
                             viewModel.distance = vehicle.distance ?? ""
-                            viewModel.dateTime = vehicle.date_time ?? ""
+//                            viewModel.dateTime = vehicle.date_time ?? ""
                             viewModel.fairEstimate = vehicle.estimate_fair ?? ""
                         }
                 }

@@ -62,7 +62,7 @@ struct HomeView: View {
                             return
                         }
 
-                        let bookingData = BookingDetailData(
+                        let bookingData = BookingDetailData (
                             pickup: LocationDetail(address: viewModel.pickupAddress,
                                                    latitude: pickupCoordinate.latitude,
                                                    longitude: pickupCoordinate.longitude),

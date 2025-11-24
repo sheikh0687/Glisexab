@@ -17,7 +17,7 @@ enum AppNavigationView: Hashable {
     case home
     case bookingDetails(BookingDetailData)
     case scheduleBooking(ScheduleBookingViewModel)
-    case trackDriver(LocationSearchViewModel)
+    case trackDriver
     case rideDetails
     case driverDetails
     case history
@@ -52,8 +52,8 @@ enum AppNavigationView: Hashable {
             BookingView(viewModel: BookingDetailViewModel(data: data))
         case .scheduleBooking(let viewModel):
             ScheduleBookingView(viewModel: viewModel)
-        case .trackDriver(let viewModel):
-            TrackingView(locationManager: viewModel)
+        case .trackDriver:
+            TrackingView()
         case .rideDetails:
             RideDetailView()
         case .driverDetails:

@@ -15,13 +15,15 @@ class SearchDriverViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var customError: CustomError? = nil
     @Published var isSuccess: Bool = false
-    @Published var userAvtiveReq: Res_UserActiveRequest?
+    @Published var obj_Res: Res_UserActiveRequest?
     
-    @Published var data: BookingDetailData?
-    
-    init(data: BookingDetailData? = nil) {
-        self.data = data
-    }
+    @Published var profileImage: UIImage? = nil
+    @Published var vehcileImage: UIImage? = nil
+//    @Published var data: BookingDetailData?
+//    
+//    init(data: BookingDetailData? = nil) {
+//        self.data = data
+//    }
     
     func userActiveRequest(appState: AppState) {
         guard !appState.useriD.isEmpty else {
@@ -45,8 +47,18 @@ class SearchDriverViewModel: ObservableObject {
                 switch result {
                 case .success( let res ):
                     self.isSuccess = true
-                    self.userAvtiveReq = res
-                    print("Successfull Response from View Model Class")
+                    self.obj_Res = res
+                    
+                    Utility.downloadImageBySDWebImage(res.car_details?.image ?? "") { img, error in
+                        if let img = img {
+                            DispatchQueue.main.async {
+                                self.vehcileImage = img
+                            }
+                        } else if let error = error {
+                            print("Image download failed: \(error.localizedDescription)")
+                        }
+                    }
+                    
                 case .failure(let error):
                     self.customError = .customError(message: error.localizedDescription)
                 }
